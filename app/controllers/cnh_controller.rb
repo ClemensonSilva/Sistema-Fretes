@@ -1,0 +1,2 @@
+class CnhController < ApplicationController
+end
