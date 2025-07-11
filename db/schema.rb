@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_11_142008) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -35,6 +35,20 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_142008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["funcionario_id"], name: "index_cnhs_on_funcionario_id"
+  end
+
+  create_table "fretes", force: :cascade do |t|
+    t.bigint "veiculo_id"
+    t.bigint "funcionario_id"
+    t.float "preco"
+    t.string "origem"
+    t.string "destino"
+    t.date "data_chegada"
+    t.string "data_saida"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["funcionario_id"], name: "index_fretes_on_funcionario_id"
+    t.index ["veiculo_id"], name: "index_fretes_on_veiculo_id"
   end
 
   create_table "funcionarios", force: :cascade do |t|
@@ -71,4 +85,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_142008) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "fretes", "funcionarios"
+  add_foreign_key "fretes", "veiculos"
 end

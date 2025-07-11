@@ -54,7 +54,7 @@ veiculo = Veiculo.create!(
 )
 p "#{Veiculo.count} veiculos criads"
 
-Abastecimento.create!(tipo_combustivel: 1,
+abastecimento = Abastecimento.create!(tipo_combustivel: 1,
                       data_abastecimento: "2022-03-10",
                       quantidade_litros:30.0,
                       preco_litro: 5.38,
@@ -64,9 +64,14 @@ Abastecimento.create!(tipo_combustivel: 1,
 p "#{Abastecimento.count} Cnhs criadas"
 
 
-Manutencao.create!(veiculo:veiculo,
+manutencao = Manutencao.create!(veiculo:veiculo,
  tipo: 1,
  descricao: "troca de pneus",
  data_realizacao: "2023-01-10",
  custo: 4000.0,
  oficina: "Oficina saia rodada")
+
+Frete.create!(veiculo: veiculo, funcionario: funcionario,
+              preco: 1450.0, origem: "Mossoró/RN", destino: "Natal/RN",
+              data_chegada: "2022-03-10", data_saida: "2022-03-10"
+              )
