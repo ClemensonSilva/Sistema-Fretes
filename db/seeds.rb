@@ -10,6 +10,10 @@
 
 Funcionario.destroy_all
 Cnh.destroy_all
+Abastecimento.destroy_all
+Veiculo.destroy_all
+Manutencao.destroy_all
+
 
 funcionario = Funcionario.create!(
    nome: "Ana Silva",
@@ -36,4 +40,33 @@ Cnh.create!(
    validade: "2027-03-10",
    funcionario: funcionario  )
 
-   p "#{Cnh.count} Cnhs criadas"
+p "#{Cnh.count} Cnhs criadas"
+
+veiculo = Veiculo.create!(
+  placa: 'BRA-5E43',
+  marca: 'Hyundai',
+  modelo: 'HB20',
+  ano_fabricacao: '2023-01-10',
+  tipo_combustivel: 3, # Flex
+  vel_max_controlada: 180.0,
+  status: 1,
+  quilometragem_km: 15200.75
+)
+p "#{Veiculo.count} veiculos criads"
+
+Abastecimento.create!(tipo_combustivel: 1,
+                      data_abastecimento: "2022-03-10",
+                      quantidade_litros:30.0,
+                      preco_litro: 5.38,
+                      nome_posto: "Santa Fé",
+                      veiculo: veiculo,)
+
+p "#{Abastecimento.count} Cnhs criadas"
+
+
+Manutencao.create!(veiculo:veiculo,
+ tipo: 1,
+ descricao: "troca de pneus",
+ data_realizacao: "2023-01-10",
+ custo: 4000.0,
+ oficina: "Oficina saia rodada")

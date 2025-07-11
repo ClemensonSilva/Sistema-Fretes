@@ -1,0 +1,2 @@
+class AbastecimentoController < ApplicationController
+end

@@ -1,0 +1,21 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  placa: MyString
+  marca: MyString
+  modelo: MyString
+  ano_fabricacao: 2025-07-11
+  tipo_combustivel: 1
+  vel_max_controlada: 1.5
+  status: 1
+  quilometragem_km: 1.5
+
+two:
+  placa: MyString
+  marca: MyString
+  modelo: MyString
+  ano_fabricacao: 2025-07-11
+  tipo_combustivel: 1
+  vel_max_controlada: 1.5
+  status: 1
+  quilometragem_km: 1.5

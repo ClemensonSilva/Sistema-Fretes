@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_07_11_020853) do
+ActiveRecord::Schema[8.0].define(version: 2025_07_11_142008) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "abastecimentos", force: :cascade do |t|
+    t.bigint "veiculo_id"
+    t.integer "tipo_combustivel"
+    t.integer "data_abastecimento"
+    t.float "quantidade_litros"
+    t.float "preco_litro"
+    t.string "nome_posto"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["veiculo_id"], name: "index_abastecimentos_on_veiculo_id"
+  end
 
   create_table "cnhs", force: :cascade do |t|
     t.string "numero_registro"
@@ -31,6 +43,31 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_020853) do
     t.string "cargo"
     t.integer "regiao_atuacao", default: 0
     t.string "supervisor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "manutencaos", force: :cascade do |t|
+    t.bigint "veiculo_id"
+    t.integer "tipo"
+    t.string "descricao"
+    t.date "data_realizacao"
+    t.float "custo"
+    t.string "oficina"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["veiculo_id"], name: "index_manutencaos_on_veiculo_id"
+  end
+
+  create_table "veiculos", force: :cascade do |t|
+    t.string "placa"
+    t.string "marca"
+    t.string "modelo"
+    t.date "ano_fabricacao"
+    t.integer "tipo_combustivel"
+    t.float "vel_max_controlada"
+    t.integer "status"
+    t.float "quilometragem_km"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
