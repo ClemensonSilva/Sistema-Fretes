@@ -31,16 +31,15 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.integer "cat_cnh", default: 0
     t.date "data_expedicao"
     t.date "validade"
-    t.bigint "funcionario_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["funcionario_id"], name: "index_cnhs_on_funcionario_id"
   end
 
   create_table "fretes", force: :cascade do |t|
     t.bigint "veiculo_id"
     t.bigint "funcionario_id"
     t.float "preco"
+    t.integer "status"
     t.string "origem"
     t.string "destino"
     t.date "data_chegada"
@@ -52,13 +51,23 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
   end
 
   create_table "funcionarios", force: :cascade do |t|
-    t.string "nome"
-    t.string "cpf"
-    t.string "cargo"
-    t.integer "regiao_atuacao", default: 0
-    t.string "supervisor_id"
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "nome", null: false
+    t.string "cpf", null: false
+    t.string "cargo", null: false
+    t.string "regiao_atuacao", default: "A ser remanejado."
+    t.bigint "supervisor_id"
+    t.bigint "cnh_id"
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["cnh_id"], name: "index_funcionarios_on_cnh_id"
+    t.index ["email"], name: "index_funcionarios_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
+    t.index ["supervisor_id"], name: "index_funcionarios_on_supervisor_id"
   end
 
   create_table "manutencaos", force: :cascade do |t|
@@ -79,6 +88,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.string "modelo"
     t.date "ano_fabricacao"
     t.integer "tipo_combustivel"
+    t.integer "categoria_veiculo"
     t.float "vel_max_controlada"
     t.integer "status"
     t.float "quilometragem_km"

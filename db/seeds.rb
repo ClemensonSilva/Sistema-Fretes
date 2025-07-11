@@ -15,32 +15,31 @@ Veiculo.destroy_all
 Manutencao.destroy_all
 
 
-funcionario = Funcionario.create!(
-   nome: "Ana Silva",
-   cpf: "123.456.789-00",
-   cargo: "Motorista", 
-   regiao_atuacao: 2,
-   supervisor_id: nil )
-
-
-
 Gerente.create(
    nome: "Francisco Silva",
    cpf: "113.456.129-80",
    regiao_atuacao: 2
 )
 
-p "#{Funcionario.count} funcionarios criados"
 
 
-Cnh.create!(
+cnh = Cnh.create!(
    numero_registro: "98765432109",
    cat_cnh: 1,
    data_expedicao: "2022-03-10",
-   validade: "2027-03-10",
-   funcionario: funcionario  )
-
+   validade: "2027-03-10")
 p "#{Cnh.count} Cnhs criadas"
+
+funcionario = Funcionario.create!(
+  email: "anasilva@gmail.com",
+  password: "123456",
+  nome: "Ana Silva",
+  cpf: "123.456.789-00",
+  cargo: "Motorista",
+  regiao_atuacao: 2,
+  cnh: cnh)
+p "#{Funcionario.count} funcionarios criados"
+
 
 veiculo = Veiculo.create!(
   placa: 'BRA-5E43',
@@ -50,6 +49,7 @@ veiculo = Veiculo.create!(
   tipo_combustivel: 3, # Flex
   vel_max_controlada: 180.0,
   status: 1,
+  categoria_veiculo: 2,
   quilometragem_km: 15200.75
 )
 p "#{Veiculo.count} veiculos criads"
@@ -59,8 +59,7 @@ abastecimento = Abastecimento.create!(tipo_combustivel: 1,
                       quantidade_litros:30.0,
                       preco_litro: 5.38,
                       nome_posto: "Santa Fé",
-                      veiculo: veiculo,)
-
+                      veiculo: veiculo)
 p "#{Abastecimento.count} Cnhs criadas"
 
 
@@ -70,8 +69,10 @@ manutencao = Manutencao.create!(veiculo:veiculo,
  data_realizacao: "2023-01-10",
  custo: 4000.0,
  oficina: "Oficina saia rodada")
+p "#{Manutencao.count} Cnhs criadas"
 
 Frete.create!(veiculo: veiculo, funcionario: funcionario,
               preco: 1450.0, origem: "Mossoró/RN", destino: "Natal/RN",
-              data_chegada: "2022-03-10", data_saida: "2022-03-10"
-              )
+              data_chegada: "2022-03-10", data_saida: "2022-03-10",
+              status: 1)
+p "#{Frete.count} Cnhs criadas"

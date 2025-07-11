@@ -1,2 +1,0 @@
-class FuncionarioController < ApplicationController
-end
