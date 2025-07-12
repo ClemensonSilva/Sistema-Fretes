@@ -14,16 +14,25 @@ Abastecimento.destroy_all
 Veiculo.destroy_all
 Manutencao.destroy_all
 
+cnh2 = Cnh.create!(
+  numero_registro: "98765432109",
+  cat_cnh: 1,
+  data_expedicao: "2022-03-10",
+  validade: "2027-03-10")
+
 
 Gerente.create(
+  email: "clemesilva@gmail.com",
+  password: "123456",
    nome: "Francisco Silva",
    cpf: "113.456.129-80",
-   regiao_atuacao: 2
+   regiao_atuacao: 2,
+    cnh: cnh2
 )
 
 
 
-cnh = Cnh.create!(
+cnh1 = Cnh.create!(
    numero_registro: "98765432109",
    cat_cnh: 1,
    data_expedicao: "2022-03-10",
@@ -37,7 +46,7 @@ funcionario = Funcionario.create!(
   cpf: "123.456.789-00",
   cargo: "Motorista",
   regiao_atuacao: 2,
-  cnh: cnh)
+  cnh: cnh1)
 p "#{Funcionario.count} funcionarios criados"
 
 

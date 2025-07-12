@@ -25,6 +25,24 @@
   <body>
   <p class="notice"><%= notice %></p>
   <p class="alert"><%= alert %></p>
+  <div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+
+        <p class="navbar-text pull-right">
+          <% if funcionario_signed_in? %>
+            Logged in as <strong><%= current_funcionario.email %></strong>.
+            <%= button_to 'Edit profile', edit_funcionario_registration_path, :class => 'navbar-button' %> |
+            <%= button_to "Logout", destroy_funcionario_session_path, method: :delete, :class => 'navbar-button'  %>
+          <% else %>
+            <%= button_to "Sign up", new_funcionario_registration_path, :class => 'navbar-button'  %> |
+            <%= button_to "Login", new_funcionario_session_path, :class => 'navbar-button'  %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+  </div>
+
 
   <%= yield %>
   </body>

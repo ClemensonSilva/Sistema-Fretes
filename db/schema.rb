@@ -55,7 +55,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.string "encrypted_password", default: "", null: false
     t.string "nome", null: false
     t.string "cpf", null: false
-    t.string "cargo", null: false
+    t.string "cargo"
     t.string "regiao_atuacao", default: "A ser remanejado."
     t.bigint "supervisor_id"
     t.bigint "cnh_id"

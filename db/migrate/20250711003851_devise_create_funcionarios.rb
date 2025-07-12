@@ -8,7 +8,7 @@ class DeviseCreateFuncionarios < ActiveRecord::Migration[8.0]
       t.string :encrypted_password, null: false, default: ""
       t.string :nome, null: false
       t.string :cpf, null: false
-      t.string :cargo, null: false
+      t.string :cargo
       t.string :regiao_atuacao, default: "A ser remanejado."
       t.references :supervisor
       t.references :cnh

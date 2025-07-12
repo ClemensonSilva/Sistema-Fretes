@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :funcionarios
+  get "home/index"
+  devise_for :funcionario
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -13,4 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "home#index"
+  get 'motorista/dashboard', to: 'motorista#show', as: :motorista_dashboard
+  get 'gerente/dashboard', to: 'gerente#show', as: :gerente_dashboard
+
 end

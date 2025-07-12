@@ -4,4 +4,6 @@ class Funcionario < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   belongs_to :cnh, class_name: "Cnh"
+  self.inheritance_column = :cargo
+
 end
