@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  preco: 1.5
+  origem: MyString
+  destino: MyString
+  data_chegada: 2025-07-11
+  data_saida: MyString
+
+two:
+  preco: 1.5
+  origem: MyString
+  destino: MyString
+  data_chegada: 2025-07-11
+  data_saida: MyString

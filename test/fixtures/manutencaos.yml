@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo: 1
+  descricao: MyString
+  data_realizacao: 2025-07-11
+  custo: 1.5
+  oficina: MyString
+
+two:
+  tipo: 1
+  descricao: MyString
+  data_realizacao: 2025-07-11
+  custo: 1.5
+  oficina: MyString

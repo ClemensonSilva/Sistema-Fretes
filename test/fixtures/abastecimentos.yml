@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  tipo_combustivel: 1
+  data_abastecimento: 1
+  quantidade_litros: 1.5
+  preco_litro: 1.5
+  nome_posto: MyString
+
+two:
+  tipo_combustivel: 1
+  data_abastecimento: 1
+  quantidade_litros: 1.5
+  preco_litro: 1.5
+  nome_posto: MyString

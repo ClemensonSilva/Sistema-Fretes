@@ -1,0 +1,2 @@
+module FreteHelper
+end

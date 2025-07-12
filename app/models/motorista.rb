@@ -1,0 +1,2 @@
+class Motorista < Funcionario
+end
