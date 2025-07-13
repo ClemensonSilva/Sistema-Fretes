@@ -1,0 +1,59 @@
+<h1>Detalhes do Funcionário</h1>
+
+<p>
+  <strong>Nome:</strong>
+  <%= @funcionario.nome %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @funcionario.email %>
+</p>
+
+<p>
+  <strong>CPF:</strong>
+  <%= @funcionario.cpf %>
+</p>
+
+<p>
+  <strong>Cargo:</strong>
+  <%= @funcionario.cargo %>
+</p>
+
+<p>
+  <strong>Região de Atuação:</strong>
+  <%= @funcionario.regiao_atuacao %>
+</p>
+
+<% if @funcionario.supervisor.present? %>
+  <p>
+    <strong>Supervisor:</strong>
+    <%= @funcionario.supervisor.nome %> <%# Assumindo que o supervisor tem um atributo 'nome' %>
+  </p>
+<% else %>
+  <p>
+    <strong>Supervisor:</strong> Não atribuído
+  </p>
+<% end %>
+
+<% if @funcionario.cnh.present? %>
+  <p>
+    <strong>CNH:</strong>
+    <%= @funcionario.cnh.numero_registro %>
+  </p>
+  <p>
+    <strong>Categoria:</strong>
+    <%= @funcionario.cnh.cat_cnh %>
+  </p>
+  <p>
+    <strong>Validade:</strong>
+    <%= @funcionario.cnh.validade %>
+  </p>
+<% else %>
+  <p>
+    <strong>CNH:</strong> Não informada
+  </p>
+<% end %>
+
+<%= link_to 'Editar Funcionário', edit_funcionario_path(@funcionario) %> |
+<%= link_to 'Voltar para a lista', funcionarios_path %>

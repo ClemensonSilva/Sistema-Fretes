@@ -1,0 +1,29 @@
+<%# app/views/manutencoes/_tabela_manutencoes.html.erb %>
+
+<%# A partial espera receber uma variável local chamada 'manutencoes' %>
+<% if manutencoes.any? %>
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>Veículo</th>
+      <th>Tipo</th>
+      <th>Data Agendada</th>
+      <th>Custo</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% manutencoes.each do |manutencao| %>
+      <tr>
+        <td><%= manutencao.veiculo.try(:placa) || "N/A" %></td>
+        <td><%= manutencao.tipo %></td>
+        <td><%= l(manutencao.data_agendada) if manutencao.data_agendada.present? %></td>
+        <td><%= number_to_currency(manutencao.custo, unit: "R$", separator: ",", delimiter: ".") if manutencao.custo.present? %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    Nenhuma manutenção encontrada para exibir.
+  </div>
+<% end %>

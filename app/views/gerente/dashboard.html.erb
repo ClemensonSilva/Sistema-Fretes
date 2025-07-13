@@ -1,0 +1,26 @@
+<h1>Lista de Funcionários</h1>
+
+<% if @funcionarios.any? %>
+  <table>
+    <thead>
+    <tr>
+      <th>Nome</th>
+      <th>CPF</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @funcionarios.each do |funcionario| %>
+      <tr>
+        <td><%= funcionario.nome %></td>
+        <td><%= funcionario.cpf %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Nenhum funcionário cadastrado.</p>
+<% end %>
+<% button_to "Detalhes do funcionario" %>
+
+<br>
+
