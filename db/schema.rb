@@ -17,7 +17,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
   create_table "abastecimentos", force: :cascade do |t|
     t.bigint "veiculo_id"
     t.integer "tipo_combustivel"
-    t.integer "data_abastecimento"
+    t.date "data_abastecimento"
     t.float "quantidade_litros"
     t.float "preco_litro"
     t.string "nome_posto"
@@ -46,7 +46,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.string "origem"
     t.string "destino"
     t.date "data_chegada"
-    t.string "data_saida"
+    t.date "data_saida"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["funcionario_id"], name: "index_fretes_on_funcionario_id"

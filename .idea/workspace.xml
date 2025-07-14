@@ -5,34 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b08a3e7-13b2-4729-82e3-319de263c3bc" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/views/abastecimento/_abastecimento.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/abastecimento/_tabela_links_abastecimentos.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/abastecimento/show.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/frete/_frete.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/frete/_tabela_links_fretes.html.erb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/frete/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Sistema-Fretes.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Sistema-Fretes.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/motorista/dashboard.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/abastecimento_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/abastecimento_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/frete_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/frete_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/funcionario_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/funcionario_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/gerente_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/gerente_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/manutencao_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/manutencao_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/abastecimento.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/abastecimento.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/cnh.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/cnh.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/frete.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/frete.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/funcionario.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/funcionario.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/motorista_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/motorista_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/gerente.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/gerente.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/models/motorista.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/motorista.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/funcionario/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/funcionario/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/gerente/dashboard.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/gerente/dashboard.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manutencao/_tabela_links_manutencoes.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manutencao/_tabela_links_manutencoes.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manutencao/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manutencao/show.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/abastecimento/_abastecimento.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/abastecimento/_tabela_links_abastecimentos.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/motorista/show.html.erb" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20250711141342_create_abastecimentos.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20250711141342_create_abastecimentos.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/migrate/20250711172152_create_fretes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/migrate/20250711172152_create_fretes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/schema.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/schema.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,9 +60,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1752491194122",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1752522692678",
     "git-widget-placeholder": "criacaoViews",
-    "last_opened_file_path": "/home/hall-9000/Faculdade/Banco de Dados/Sistema-Fretes/app/views/gerente",
+    "last_opened_file_path": "/home/hall-9000/Faculdade/Banco de Dados/Sistema-Fretes/app/views/abastecimento",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -90,6 +75,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/abastecimento" />
       <recent name="$PROJECT_DIR$/app/views/gerente" />
       <recent name="$PROJECT_DIR$/app/views/manutencao" />
     </key>
@@ -231,7 +217,9 @@
       <workItem from="1752409105437" duration="31000" />
       <workItem from="1752409137262" duration="14000" />
       <workItem from="1752409152651" duration="16430000" />
-      <workItem from="1752491132542" duration="1971000" />
+      <workItem from="1752491132542" duration="12607000" />
+      <workItem from="1752517582430" duration="3277000" />
+      <workItem from="1752522633708" duration="2495000" />
     </task>
     <servers />
   </component>

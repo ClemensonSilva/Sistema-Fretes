@@ -6,18 +6,18 @@ class Gerente < Funcionario
   has_many :manutencaos, through: :veiculos
   has_many :abastecimentos, through: :veiculos
 
-    def get_fretes_supervisionados
-       self.fretes
-    end
-    def get_motoristas_supervisionados
-      self.motoristas.select(:id, :nome, :cpf)
-    end
-    def get_manutencoes_supervisionadas
-      self.manutencaos
-    end
-    def get_abastecimentos_supervisionados
-      self.abastecimentos
-    end
+  def get_fretes_supervisionados
+    self.fretes
+  end
+  def get_motoristas_supervisionados
+    self.motoristas.select(:id, :nome, :cpf)
+  end
+  def get_manutencoes_supervisionadas
+    self.manutencaos
+  end
+  def get_abastecimentos_supervisionados
+    self.abastecimentos
+  end
 
 
 end

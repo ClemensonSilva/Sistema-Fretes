@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "home#index"
-  get 'motorista/show', to: 'motorista#show', as: :motorista_dashboard
+  get 'motorista/show', to: 'motorista#dashboard', as: :motorista_dashboard
   get 'gerente/show', to: 'gerente#dashboard', as: :gerente_dashboard
   get 'funcionario/:id', to: 'funcionario#show', as: :funcionario_detalhes
   get 'manutencao/:id', to: 'manutencao#show', as: :manutencao_detalhes

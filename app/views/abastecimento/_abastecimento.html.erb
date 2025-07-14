@@ -1,5 +1,3 @@
-<%# app/views/abastecimentos/show.html.erb ou uma partial _abastecimento_detalhes.html.erb %>
-
 <div class="card mb-3">
   <div class="card-header bg-primary text-white">
     Detalhes do Abastecimento #<%= @abastecimento.id %>
@@ -15,10 +13,15 @@
       <% end %>
     </p>
     <p class="card-text">
-      <strong>Tipo de Combustível:</strong> <%= @abastecimento.tipo_combustivel %> <%# Adapte para um helper se 'tipo_combustivel' for um enum ou código %>
+      <strong>Tipo de Combustível:</strong>
+      <% if @abastecimento.tipo_combustivel.present? %>
+        <%= Abastecimento.human_attribute_name("tipo_combustivel_#{@abastecimento.tipo_combustivel}") %>
+      <% else %>
+        N/A
+      <% end %>
     </p>
     <p class="card-text">
-      <strong>Data do Abastecimento:</strong> <%= (@abastecimento.data_abastecimento) %> <%# Usando 'l' para formatar a data localizada %>
+      <strong>Data do Abastecimento:</strong> <%= l(@abastecimento.data_abastecimento) %>
     </p>
     <p class="card-text">
       <strong>Quantidade (Litros):</strong> <%= number_with_precision(@abastecimento.quantidade_litros, precision: 2, separator: ",", delimiter: ".") %> L
@@ -27,10 +30,10 @@
       <strong>Preço por Litro:</strong> <%= number_to_currency(@abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %>
     </p>
     <p class="card-text">
-      <strong>Custo Total:</strong> <%= number_to_currency(@abastecimento.quantidade_litros * @abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %>
+      <strong>Total do Abastecimento:</strong> <%= number_to_currency(@abastecimento.quantidade_litros * @abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %>
     </p>
     <p class="card-text">
-      <strong>Registrado em:</strong> <%= l(@abastecimento.created_at, format: :long) %> <%# Formata a data e hora de criação %>
+      <strong>Posto de Gasolina:</strong> <%= @abastecimento.nome_posto %>
     </p>
   </div>
 </div>
