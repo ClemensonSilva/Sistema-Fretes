@@ -1,0 +1,32 @@
+<%# app/views/abastecimentos/_tabela_abastecimentos.html.erb %>
+<%# Essa partial espera uma variável local chamada 'abastecimentos' (ou @abastecimentos no seu controller) %>
+
+<% if @abastecimentos.any? %>
+  <h2>Abastecimentos Registrados</h2>
+
+  <table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+    <tr>
+      <th>Veículo</th>
+      <th>Quantidade (Litros)</th>
+      <th>Preço por Litro</th>
+      <th>Custo Total</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @abastecimentos.each do |abastecimento| %>
+      <tr>
+        <td><%= abastecimento.veiculo&.placa || "N/A" %></td> <%# Exibe a placa do veículo, ou "N/A" se não houver %>
+        <td><%= number_with_precision(abastecimento.quantidade_litros, precision: 2, separator: ",", delimiter: ".") %></td> <%# Formata a quantidade com 2 casas decimais %>
+        <td><%= number_to_currency(abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %></td> <%# Formata o preço por litro como moeda BRL %>
+        <td><%= number_to_currency(abastecimento.quantidade_litros * abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %></td> <%# Calcula e formata o custo total %>
+        <td><%= link_to 'Ver Detalhes do Abastecimento', abastecimento_detalhes_path(abastecimento) %></td> %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info" role="alert">
+    Nenhum abastecimento registrado até o momento.
+  </div>
+<% end %>

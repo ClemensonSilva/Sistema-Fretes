@@ -17,11 +17,14 @@ Manutencao.destroy_all
 cnh2 = Cnh.create!(
   numero_registro: "98765432109",
   cat_cnh: 1,
+  status:0,
+  primeira_cnh: "2021-03-10",
+  observacoes: "Necessário o uso de óculos",
   data_expedicao: "2022-03-10",
   validade: "2027-03-10")
 
 
-Gerente.create(
+gerente = Gerente.create(
   email: "clemesilva@gmail.com",
   password: "123456",
    nome: "Francisco Silva",
@@ -36,6 +39,9 @@ cnh1 = Cnh.create!(
    numero_registro: "98765432109",
    cat_cnh: 1,
    data_expedicao: "2022-03-10",
+   status:0,
+   primeira_cnh: "2021-03-10",
+   observacoes: "Não há",
    validade: "2027-03-10")
 p "#{Cnh.count} Cnhs criadas"
 
@@ -46,6 +52,7 @@ funcionario = Funcionario.create!(
   cpf: "123.456.789-00",
   cargo: "Motorista",
   regiao_atuacao: 2,
+  supervisor: gerente,
   cnh: cnh1)
 p "#{Funcionario.count} funcionarios criados"
 
@@ -75,7 +82,8 @@ p "#{Abastecimento.count} Cnhs criadas"
 manutencao = Manutencao.create!(veiculo:veiculo,
  tipo: 1,
  descricao: "troca de pneus",
- data_realizacao: "2023-01-10",
+ data_agendada: "2023-01-10",
+ data_entrega_veiculo: "2023-01-12",
  custo: 4000.0,
  oficina: "Oficina saia rodada")
 p "#{Manutencao.count} Cnhs criadas"

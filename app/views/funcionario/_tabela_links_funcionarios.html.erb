@@ -1,15 +1,19 @@
 <% if @funcionarios.any? %>
+  <h2>Motoristas gerenciados por você</h2>
+
   <table>
     <thead>
     <tr>
       <th>Nome</th>
       <th>CPF</th>
+      <th>Status CNH</th>
     </tr>
     </thead>
     <tbody>
     <% @funcionarios.each do |funcionario| %>
       <tr>
         <td><%= funcionario.nome %></td>
+        <td><%= funcionario.cpf %></td>
         <td><%= funcionario.cpf %></td>
         <td> <%= link_to 'Ver Detalhes do funcionario', funcionario_detalhes_path(funcionario) %>
         </td>

@@ -1,0 +1,36 @@
+<div class="card mb-3">
+  <div class="card-header bg-primary text-white">
+    Detalhes do Frete #<%= @frete.id %>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Frete de <%= @frete.origem %> para <%= @frete.destino %></h5>
+    <p class="card-text">
+      <strong>Veículo:</strong>
+      <% if @frete.veiculo.present? %>
+        <%= @frete.veiculo.placa %> - <%= @frete.veiculo.modelo %>
+      <% else %>
+        N/A
+      <% end %>
+    </p>
+    <p class="card-text">
+      <strong>Funcionário (Motorista):</strong>
+      <% if @frete.funcionario.present? %>
+        <%= @frete.funcionario.nome %> (<%= @frete.funcionario.cpf %>)
+      <% else %>
+        N/A
+      <% end %>
+    </p>
+    <p class="card-text">
+      <strong>Preço:</strong> <%= number_to_currency(@frete.preco, unit: "R$", separator: ",", delimiter: ".") %>
+    </p>
+    <p class="card-text">
+      <strong>Status:</strong> <%= @frete.status? ? "Ativo" : "Concluído" %> <%# Adapte conforme seus valores de status %>
+    </p>
+    <p class="card-text">
+      <strong>Data de Saída:</strong> <%= @frete.data_saida %>
+    </p>
+    <p class="card-text">
+      <strong>Data de Chegada Prevista:</strong> <%= l(@frete.data_chegada) if @frete.data_chegada.present? %>
+    </p>
+  </div>
+</div>
