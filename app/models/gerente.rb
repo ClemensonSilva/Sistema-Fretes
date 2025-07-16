@@ -10,6 +10,9 @@ class Gerente < Funcionario
   def get_motoristas_supervisionados
     self.motoristas.select(:id, :nome, :cpf)
   end
+  def get_veiculos_supervisionados
+    self.veiculos
+  end
   def get_manutencoes_supervisionadas
     self.veiculos.manutencaos
   end

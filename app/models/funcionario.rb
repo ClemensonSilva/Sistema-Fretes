@@ -9,4 +9,15 @@ class Funcionario < ApplicationRecord
   self.inheritance_column = :cargo
   enum :regiao_atuacao, {NORDESTE: 0, SULDESTE: 1, CENTROOESTE: 2, SUL: 3, NORTE: 4}
 
+  def get_cnh(funcionario_id)
+    Funcionario.find_by(id: funcionario_id).cnh.status
+  end
+
+  def motorista?
+    self.cargo == "Motorista"
+  end
+
+  def gerente?
+    self.cargo == "Gerente"
+  end
 end
