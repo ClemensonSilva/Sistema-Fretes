@@ -5,4 +5,7 @@ class FreteController < ApplicationController
   def show
     @frete = Frete.find(params[:id])
   end
+  def index
+    @fretes = Frete.all
+  end
 end
