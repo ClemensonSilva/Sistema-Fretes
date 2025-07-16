@@ -1,0 +1,49 @@
+<%# app/views/veiculos/_tabela_veiculos.html.erb %>
+
+<%# Este partial agora utiliza o _shared_table para renderizar a tabela de veículos. %>
+<%# Ele espera que @veiculos seja definido no controller. %>
+
+<%= render 'layouts/shared_table',
+           collection: @veiculos,
+           columns: [
+             {
+               header: "Placa - Modelo",
+               custom_render: Proc.new { |veiculo|
+                 placa_modelo(veiculo)
+               }
+             },
+             {
+               header: "Categoria",
+               custom_render: Proc.new { |veiculo|
+                 veiculo.categoria_veiculo
+               },
+             },
+             {
+               header: "Quilometragem (km)",
+               custom_render: Proc.new { |veiculo|
+                 number_with_precision(veiculo.quilometragem_km, precision: 2, separator: ",", delimiter: ".")
+               },
+             },
+             {
+               header: "Ano Fabricação",
+               custom_render: Proc.new { |veiculo|
+                 veiculo.ano_fabricacao&.year || "N/A" # Exibe apenas o ano, ou N/A se ausente
+               }
+             },
+             { header: "Ações",
+               custom_render: Proc.new { |veiculo|
+                 botoes_aplicacao(veiculo_detalhes_path(veiculo), "Detalhar") +
+                   botoes_aplicacao(edit_veiculo_path(veiculo), "Editar") +
+                   botoes_aplicacao(veiculo_path(veiculo), 'Excluir')
+               }
+             }
+
+    ],
+           empty_heading: "Nenhum veículo encontrado.",
+           empty_message: Proc.new { "<p>Parece que não há veículos registrados em sua frota ainda.</p>".html_safe },
+           empty_cta: Proc.new {
+             link_to new_veiculo_path, class: "btn btn-outline-primary" do
+               tag.i(class: "bi bi-plus-circle me-2") + " Cadastrar Novo Veículo"
+             end
+           }
+%>
