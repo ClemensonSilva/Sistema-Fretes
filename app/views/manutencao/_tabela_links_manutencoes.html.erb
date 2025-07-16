@@ -2,14 +2,16 @@
 
 <%# A partial espera receber uma variável local chamada 'manutencoes' %>
 <% if @manutencoes.any? %>
+  <h2>Manutenções gerenciadas por você</h2> <%# Título movido para fora da tabela %>
+
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
-    <h2>Manutenções gerenciadas por você</h2>
     <tr>
       <th>Veículo</th>
       <th>Tipo</th>
       <th>Data Agendada</th>
       <th>Custo</th>
+      <%# Removida a <th> extra, pois o botão "Detalhes" será incorporado na última célula de dados %>
     </tr>
     </thead>
     <tbody>
@@ -18,8 +20,12 @@
         <td><%= manutencao.veiculo.try(:placa) || "N/A" %></td>
         <td><%= manutencao.tipo %></td>
         <td><%= l(manutencao.data_agendada) if manutencao.data_agendada.present? %></td>
-        <td><%= number_to_currency(manutencao.custo, unit: "R$", separator: ",", delimiter: ".") if manutencao.custo.present? %></td>
-        <td> <%= link_to 'Ver Detalhes da manutenção', manutencao_detalhes_path(manutencao) %>
+        <td>
+          <%= number_to_currency(manutencao.custo, unit: "R$", separator: ",", delimiter: ".") if manutencao.custo.present? %>
+          <br> <%# Adiciona uma quebra de linha para separar o custo do botão %>
+          <%= link_to 'Detalhar', manutencao_detalhes_path(manutencao), class: 'btn btn-sm btn-success mt-1' %> <%# Botão Detalhar com estilo Bootstrap %>
+        </td>
+        <%# Removida a <td> extra, pois o link_to foi incorporado %>
       </tr>
     <% end %>
     </tbody>
