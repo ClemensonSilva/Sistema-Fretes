@@ -1,39 +1,85 @@
-<div class="card mb-3">
-  <div class="card-header bg-primary text-white">
-    Detalhes do Abastecimento #<%= @abastecimento.id %>
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-gradient-primary text-white d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Detalhes do Abastecimento <span class="badge bg-light text-primary ms-2">#<%= @abastecimento.id %></span></h4>
+    <%# Opcional: Adicionar ícone de ajuda ou link para edição aqui, se aplicável %>
   </div>
   <div class="card-body">
-    <h5 class="card-title">Abastecimento em <%= @abastecimento.nome_posto %></h5>
-    <p class="card-text">
-      <strong>Veículo:</strong>
-      <% if @abastecimento.veiculo.present? %>
-        <%= @abastecimento.veiculo.placa %> - <%= @abastecimento.veiculo.modelo %>
-      <% else %>
-        N/A
-      <% end %>
-    </p>
-    <p class="card-text">
-      <strong>Tipo de Combustível:</strong>
-      <% if @abastecimento.tipo_combustivel.present? %>
-        <%= Abastecimento.human_attribute_name("tipo_combustivel_#{@abastecimento.tipo_combustivel}") %>
-      <% else %>
-        N/A
-      <% end %>
-    </p>
-    <p class="card-text">
-      <strong>Data do Abastecimento:</strong> <%= l(@abastecimento.data_abastecimento) %>
-    </p>
-    <p class="card-text">
-      <strong>Quantidade (Litros):</strong> <%= number_with_precision(@abastecimento.quantidade_litros, precision: 2, separator: ",", delimiter: ".") %> L
-    </p>
-    <p class="card-text">
-      <strong>Preço por Litro:</strong> <%= number_to_currency(@abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %>
-    </p>
-    <p class="card-text">
-      <strong>Total do Abastecimento:</strong> <%= number_to_currency(@abastecimento.quantidade_litros * @abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %>
-    </p>
-    <p class="card-text">
-      <strong>Posto de Gasolina:</strong> <%= @abastecimento.nome_posto %>
-    </p>
+    <h5 class="card-title text-primary mb-3"><i class="bi bi-fuel-pump-fill me-2"></i>Abastecimento em <%= @abastecimento.nome_posto %></h5>
+
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-car-front-fill me-2"></i>Veículo:</strong>
+          <span class="text-muted">
+            <% if @abastecimento.veiculo.present? %>
+              <%= @abastecimento.veiculo.placa %> - <%= @abastecimento.veiculo.modelo %>
+            <% else %>
+              <em class="text-warning">Não informado</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-fuel-fill me-2"></i>Tipo de Combustível:</strong>
+          <span class="text-muted">
+            <% if @abastecimento.tipo_combustivel.present? %>
+              <%= Abastecimento.human_attribute_name("tipo_combustivel_#{@abastecimento.tipo_combustivel}") %>
+            <% else %>
+              <em class="text-warning">Não informado</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-calendar-check-fill me-2"></i>Data do Abastecimento:</strong>
+          <span class="text-muted"><%= l(@abastecimento.data_abastecimento) %></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-speedometer2 me-2"></i>Quantidade (Litros):</strong>
+          <span class="text-muted"><%= number_with_precision(@abastecimento.quantidade_litros, precision: 2, separator: ",", delimiter: ".") %> L</span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-currency-dollar me-2"></i>Preço por Litro:</strong>
+          <span class="text-muted"><%= number_to_currency(@abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="detail-item">
+          <strong><i class="bi bi-cash-coin me-2"></i>Total do Abastecimento:</strong>
+          <span class="text-success fw-bold fs-5"><%= number_to_currency(@abastecimento.quantidade_litros * @abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") %></span>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="detail-item">
+          <strong><i class="bi bi-geo-alt-fill me-2"></i>Posto de Gasolina:</strong>
+          <span class="text-muted"><%= @abastecimento.nome_posto %></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-end">
+    <%= link_to 'Voltar para Dashboard', gerente_dashboard_path, class: 'btn btn-outline-secondary' %>
   </div>
 </div>
+
+<%# Necessário para os ícones do Bootstrap Icons %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    .detail-item {
+        margin-bottom: 0.75rem; /* Espaçamento entre os itens de detalhe */
+    }
+    .detail-item strong {
+        min-width: 150px; /* Garante alinhamento para os rótulos */
+        display: inline-block;
+    }
+    .bg-gradient-primary {
+        background: linear-gradient(45deg, #007bff, #0056b3) !important; /* Gradiente para o cabeçalho */
+    }
+</style>

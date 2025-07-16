@@ -1,26 +1,18 @@
-<% if @funcionarios.any? %>
-  <h2>Motoristas gerenciados por você</h2>
+<%# app/views/funcionarios/_tabela_funcionarios.html.erb %>
 
-  <table>
-    <thead>
-    <tr>
-      <th>Nome</th>
-      <th>CPF</th>
-      <th>Status CNH</th>
-    </tr>
-    </thead>
-    <tbody>
-    <% @funcionarios.each do |funcionario| %>
-      <tr>
-        <td><%= funcionario.nome %></td>
-        <td><%= funcionario.cpf %></td>
-        <td><%= funcionario.cpf %></td>
-        <td> <%= link_to 'Ver Detalhes do funcionario', funcionario_detalhes_path(funcionario) %>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
-<% else %>
-  <p>Nenhum funcionário sob sua supervisão.</p>
-<% end %>
+<h2>ALOO</h2>
+
+<%= render 'layouts/shared_table',
+           collection: @funcionarios, # Passa a coleção de funcionários
+           columns: [
+             { header: "Nome", attribute: :nome }, # Atributo direto
+             { header: "CPF", attribute: :cpf },   # Atributo direto
+             { header: "Status CNH", custom_render: Proc.new { |funcionario|
+               # Lógica complexa da célula, incluindo o botão Detalhar
+               "#{funcionario.get_cnh(funcionario.id)} <br>".html_safe + # Use html_safe para <br>
+                 link_to('Detalhar', funcionario_detalhes_path(funcionario), class: 'btn btn-sm btn-success mt-1')
+             }
+             }
+           ],
+           empty_message: "Nenhum funcionário sob sua supervisão."
+%>

@@ -1,9 +1,6 @@
 <%# app/views/fretes/_tabela_fretes.html.erb %>
-<%# Essa partial espera uma variável local chamada 'fretes' (ou @fretes no seu controller) %>
 
-<% if @fretes.any? %> <%# Note: usando 'fretes' se passado como local, ou '@fretes' se for variável de instância %>
-  <h2>Fretes Gerenciados</h2>
-
+<% if @fretes.any? %>
   <table class="table table-striped table-bordered">
     <thead class="thead-dark">
     <tr>
@@ -11,16 +8,23 @@
       <th>Motorista</th>
       <th>Preço</th>
       <th>Status</th>
+      <th>Ações</th>
+
     </tr>
     </thead>
     <tbody>
     <% @fretes.each do |frete| %>
       <tr>
-        <td><%= frete.veiculo&.placa || "N/A" %></td> <%# Exibe a placa do veículo, ou "N/A" se não houver %>
-        <td><%= frete.funcionario&.nome || "N/A" %></td> <%# Exibe o nome do motorista, ou "N/A" se não houver %>
-        <td><%= number_to_currency(frete.preco, unit: "R$", separator: ",", delimiter: ".") %></td> <%# Formata o preço como moeda BRL %>
-        <td><%= (frete.status) %></td> <%# Helper para exibir status de forma amigável %>
-        <td><%= link_to 'Ver Detalhes do Frete', frete_detalhes_path(frete) %></td> <%# Link para a página de detalhes do frete %>
+        <td><%= placa_modelo(frete.veiculo) || "N/A" %></td>
+        <td><%= frete.funcionario&.nome || "N/A" %></td>
+        <td><%= number_to_currency(frete.preco, unit: "R$", separator: ",", delimiter: ".") %></td>
+        <td>
+          <%= frete_status_texto(frete.status) %> <%# Helper para exibir status de forma amigável %>
+        </td>
+        <td>
+          <%= link_to 'Detalhar', frete_detalhes_path(frete), class: 'btn btn-sm btn-success mt-1' %>
+        </td>
+
       </tr>
     <% end %>
     </tbody>
