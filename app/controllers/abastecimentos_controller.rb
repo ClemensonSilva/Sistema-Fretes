@@ -24,12 +24,15 @@ class AbastecimentosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
+  def new
+    @abastecimento = Abastecimento.new
+  end
   # adicionar rescue para tratamento de erros
   def update
     @abastecimento = Abastecimento.find(params[:id])
     @abastecimento.update(abastecimento_params)
     if @abastecimento.update(abastecimento_params)
-      redirect_to abastecimento_path
+      redirect_to abastecimento_path, notice: "Edição concluida com sucesso."
     else
       render "edit", status: :unprocessable_entify
     end
