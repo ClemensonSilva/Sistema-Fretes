@@ -17,7 +17,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
   create_table "abastecimentos", force: :cascade do |t|
     t.bigint "veiculo_id"
     t.integer "tipo_combustivel"
-    t.integer "data_abastecimento"
+    t.date "data_abastecimento"
     t.float "quantidade_litros"
     t.float "preco_litro"
     t.string "nome_posto"
@@ -27,10 +27,13 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
   end
 
   create_table "cnhs", force: :cascade do |t|
-    t.string "numero_registro"
-    t.integer "cat_cnh", default: 0
+    t.string "numero_registro", limit: 20, null: false
+    t.integer "cat_cnh", default: 0, null: false
+    t.integer "status", default: 0, null: false
+    t.date "primeira_cnh", null: false
     t.date "data_expedicao"
     t.date "validade"
+    t.text "observacoes", default: "Nenhuma observação"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -43,7 +46,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.string "origem"
     t.string "destino"
     t.date "data_chegada"
-    t.string "data_saida"
+    t.date "data_saida"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["funcionario_id"], name: "index_fretes_on_funcionario_id"
@@ -56,7 +59,7 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.string "nome", null: false
     t.string "cpf", null: false
     t.string "cargo"
-    t.string "regiao_atuacao", default: "A ser remanejado."
+    t.integer "regiao_atuacao"
     t.bigint "supervisor_id"
     t.bigint "cnh_id"
     t.string "reset_password_token"
@@ -74,7 +77,8 @@ ActiveRecord::Schema[8.0].define(version: 2025_07_11_172152) do
     t.bigint "veiculo_id"
     t.integer "tipo"
     t.string "descricao"
-    t.date "data_realizacao"
+    t.date "data_agendada"
+    t.date "data_entrega_veiculo"
     t.float "custo"
     t.string "oficina"
     t.datetime "created_at", null: false

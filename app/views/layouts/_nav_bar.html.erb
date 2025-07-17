@@ -1,0 +1,58 @@
+<%# app/views/layouts/_navbar.html.erb %>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <%= link_to 'Sistema de frete', root_path, class: 'navbar-brand' %>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <% if current_funcionario.gerente?%>
+        <li class="nav-item">
+          <%= link_to 'Dashboard Gerencial', gerente_dashboard_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Fretes', lista_fretes_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+
+        <li class="nav-item">
+          <%= link_to 'Motoristas', lista_motoristas_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Veiculos', lista_veiculos_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Manutenções', lista_manutencoes_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to 'Abastecimentos', lista_abastecimentos_path, class: 'nav-link active', aria_current: 'page' %>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Relatórios
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          </ul>
+        </li>
+        <%end%>
+      </ul>
+
+      <%# Opcional: Formulário de busca à direita %>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Buscar..." aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Buscar</button>
+      </form>
+
+      <%# Opcional: Links de usuário/login à direita %>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%= button_to 'Sair', destroy_funcionario_session_path, method: :delete, class: 'nav-link' %> <%# Exemplo para logout, pode precisar de :data { turbo_method: :delete } dependendo da versão do Rails/Hotwire %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

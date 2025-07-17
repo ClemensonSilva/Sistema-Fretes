@@ -1,0 +1,27 @@
+<%# app/views/abastecimentos/_tabela_abastecimentos.html.erb %>
+<%# Essa partial agora usa o _shared_table para renderizar a tabela de abastecimentos. %>
+<%# Espera uma variável local chamada 'abastecimentos' (ou @abastecimentos no seu controller) %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Registros de Abastecimento</h2>
+  <%=  botoes_aplicacao(new_abastecimento_path, "Cadastrar abastecimento   ")
+  %>
+</div>
+<%= render 'layouts/shared_table',
+           collection: @abastecimentos, # A coleção de abastecimentos a ser exibida
+           columns: [
+             { header: "Veículo", custom_render: Proc.new { |abastecimento| placa_modelo(abastecimento.veiculo) || "N/A" } },
+             { header: "Preço por Litro", custom_render: Proc.new { |abastecimento| number_to_currency(abastecimento.preco_litro, unit: "R$", separator: ",", delimiter: ".") } },
+             { header: "Quantidade (Litros)", custom_render: Proc.new { |abastecimento| number_with_precision(abastecimento.quantidade_litros, precision: 2, separator: ",", delimiter: ".") } },
+             { header: "Data do Abastecimento", custom_render: Proc.new { |abastecimento|
+               # Combina a data formatada e o botão 'Detalhar' na mesma célula
+               "#{l(abastecimento.data_abastecimento)} <br>".html_safe +
+                 botoes_aplicacao(abastecimento_path(abastecimento), "Detalhar") +
+                 botoes_aplicacao(edit_abastecimento_path(abastecimento), "Editar") +
+                 botoes_aplicacao(abastecimento_path(abastecimento), "Excluir", :delete)
+
+             }
+             }
+           ],
+           empty_message: "Nenhum abastecimento registrado."
+%>

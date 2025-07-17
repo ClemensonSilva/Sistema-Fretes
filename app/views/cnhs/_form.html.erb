@@ -1,0 +1,82 @@
+<%# app/views/cnhs/_form.html.erb %>
+
+<%# O helper form_with é o mais moderno e recomendado para formulários no Rails %>
+<%# Ele lida automaticamente com PATCH/PUT para edição e POST para criação %>
+<%= form_with(model: cnh, local: true, class: "needs-validation", novalidate: true) do |form| %>
+  <%# Exibição de erros de validação, se houver %>
+  <% if cnh.errors.any? %>
+    <div class="alert alert-danger" role="alert">
+      <h4 class="alert-heading">Verifique os seguintes problemas:</h4>
+      <ul class="mb-0">
+        <% cnh.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="row g-3">
+    <%# Campo: Número de Registro %>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.text_field :numero_registro, class: "form-control", placeholder: "Ex: 123456789", required: true %>
+        <%= form.label :numero_registro, "Número de Registro" %>
+        <div class="form-text text-muted">O número único da CNH (9 ou 11 dígitos).</div>
+      </div>
+    </div>
+
+    <%# Campo: Categoria da CNH %>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%# Exemplo de seleção com opções fixas. Em uma aplicação real,
+            você pode buscar estas categorias de um banco de dados ou enum. %>
+        <%= form.select :cat_cnh, Cnh.cat_cnhs.keys.map { |a| [a.humanize, a] }, { prompt: "Selecione a categoria" },
+                        class: "form-select" %>
+        <%= form.label :cat_cnh, "Categoria da CNH" %>
+      </div>
+    </div>
+
+
+    <%# Campo: Primeira CNH %>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.date_field :primeira_cnh, class: "form-control", placeholder: "DD/MM/AAAA", required: true %>
+        <%= form.label :primeira_cnh, "Data da Primeira CNH" %>
+      </div>
+    </div>
+
+    <%# Campo: Data de Expedição %>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.date_field :data_expedicao, class: "form-control", placeholder: "DD/MM/AAAA", required: true %>
+        <%= form.label :data_expedicao, "Data de Expedição" %>
+      </div>
+    </div>
+
+    <%# Campo: Validade %>
+    <div class="col-md-6">
+      <div class="form-floating mb-3">
+        <%= form.date_field :validade, class: "form-control", placeholder: "DD/MM/AAAA", required: true %>
+        <%= form.label :validade, "Data de Validade" %>
+      </div>
+    </div>
+
+    <%# Campo: Observações %>
+    <div class="col-12">
+      <div class="form-floating mb-3">
+        <%= form.text_area :observacoes, class: "form-control", placeholder: "Observações adicionais", style: "height: 100px" %>
+        <%= form.label :observacoes, "Observações" %>
+      </div>
+    </div>
+  </div>
+
+  <%# Botões de Ação %>
+  <div class="d-flex justify-content-end mt-4">
+    <%= form.submit "Salvar CNH", class: "btn btn-primary me-2" %>
+    <% if current_funcionario.gerente? %>
+      <p class="mb-1"><%= botoes_aplicacao(lista_motoristas_path, "Cancelar") %></span></p>
+    <% else %>
+      <p class="mb-1"><%= botoes_aplicacao(motorista_dashboard_path, "Cancelar") %></span></p>
+    <% end %>
+  </div>
+<% end %>

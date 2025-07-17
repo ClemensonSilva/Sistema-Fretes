@@ -1,2 +1,0 @@
-class FreteController < ApplicationController
-end

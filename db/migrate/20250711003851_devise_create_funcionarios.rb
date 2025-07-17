@@ -9,7 +9,7 @@ class DeviseCreateFuncionarios < ActiveRecord::Migration[8.0]
       t.string :nome, null: false
       t.string :cpf, null: false
       t.string :cargo
-      t.string :regiao_atuacao, default: "A ser remanejado."
+      t.integer :regiao_atuacao
       t.references :supervisor
       t.references :cnh
 

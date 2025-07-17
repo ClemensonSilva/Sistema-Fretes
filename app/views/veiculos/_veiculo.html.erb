@@ -1,0 +1,64 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Detalhes do Veículo <span class="badge bg-light text-primary ms-2"><%= @veiculo.placa %></span></h4>
+    <%# BOTÃO DE EDIÇÃO ADICIONADO AQUI %>
+    <%= details_card_header(@veiculo, edit_abastecimento_path(@veiculo), "Detalhes do veiculo")%>
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-3"><i class="bi bi-car-front-fill me-2"></i><%= @veiculo.marca %> - <span class="fw-bold"><%= @veiculo.modelo %></span> (<%= @veiculo.ano_fabricacao.year %>)</h5>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-fuel-pump-fill me-2"></i>Tipo de Combustível:</strong>
+          <span class="text-muted"><%= (@veiculo.tipo_combustivel) %></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-tags-fill me-2"></i>Categoria:</strong>
+          <span class="text-muted"><%= (@veiculo.categoria_veiculo) %></span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-speedometer2 me-2"></i>Velocidade Máx. Controlada:</strong>
+          <span class="text-muted">
+            <% if @veiculo.vel_max_controlada.present? %>
+              <%= number_with_precision(@veiculo.vel_max_controlada, precision: 2, separator: ",", delimiter: ".") %> km/h
+            <% else %>
+              <em class="text-info">Não definida</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-thermometer-high me-2"></i>Status:</strong>
+          <span class="<%= veiculo_status_cor_classe(@veiculo.status) %> fw-bold">
+            <%= (@veiculo.status) %>
+          </span>
+        </div>
+      </div>
+      <div class="col-12">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-road me-2"></i>Quilometragem:</strong>
+          <span class="text-success fw-bold fs-5">
+            <% if @veiculo.quilometragem_km.present? %>
+              <%= number_with_precision(@veiculo.quilometragem_km, precision: 2, separator: ",", delimiter: ".") %> km
+            <% else %>
+              <em class="text-info">Não informada</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-end">
+    <%= botoes_aplicacao(lista_veiculos_path, "Voltar") %>
+  </div>
+</div>
+
+<%# Necessário para os ícones do Bootstrap Icons (inclua no seu layout principal ou aqui se for isolado) %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">

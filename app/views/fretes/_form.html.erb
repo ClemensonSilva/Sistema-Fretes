@@ -1,0 +1,86 @@
+<%# app/views/fretes/_form.html.erb %>
+<%#
+  Este partial espera uma variável local 'frete'
+  (que pode ser @frete do controller, ou Frete.new para criação).
+%>
+
+<%= form_with(model: frete, local: true) do |f| %>
+  <% if frete.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(frete.errors.count, "erro") %> impediram que este frete fosse salvo:</h2>
+      <ul>
+        <% frete.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%# Campo para veiculo_id %>
+  <div class="mb-3">
+    <%= f.label :veiculo_id, "Veículo", class: "form-label" %>
+    <%#
+      Assumindo que você tem um modelo Veiculo e deseja listar os veículos disponíveis.
+      Você pode usar um helper ou mapear os veículos diretamente aqui.
+      Ex: Veiculo.all.map { |v| [v.placa, v.id] } ou [v.modelo, v.id]
+
+    %>
+    <%= f.collection_select :veiculo_id, Veiculo.all, :id, :placa, { prompt: "Selecione o Veículo" }, class: "form-select" %>
+  </div>
+
+  <%# Campo para funcionario_id %>
+  <div class="mb-3">
+    <%= f.label :funcionario_id, "Funcionário Responsável", class: "form-label" %>
+    <%#
+      Assumindo que você tem um modelo Funcionario e deseja listar os funcionários disponíveis.
+      Ex: Funcionario.all.map { |fun| [fun.nome_completo, fun.id] }
+    %>
+    <%= f.collection_select :funcionario_id, Funcionario.all, :id, :nome, { prompt: "Selecione o Funcionário" }, class: "form-select" %>
+  </div>
+
+  <%# Campo para preco %>
+  <div class="mb-3">
+    <%= f.label :preco, "Preço do Frete", class: "form-label" %>
+    <%= f.number_field :preco, step: :any, class: "form-control", placeholder: "Ex: 1500.00" %>
+  </div>
+
+  <%# Campo para status %>
+  <div class="mb-3">
+    <%= f.label :status, "Status do Frete", class: "form-label" %>
+    <%#
+      Assumindo que você usa um enum no seu modelo Frete para o status.
+      Ex: enum status: { pendente: 0, em_andamento: 1, concluido: 2, cancelado: 3 }
+    %>
+    <%= f.select :status, Frete.statuses.keys.map { |s| [s.humanize, s] }, { prompt: "Selecione o Status" }, class: "form-select" %>
+  </div>
+
+  <%# Campo para origem %>
+  <div class="mb-3">
+    <%= f.label :origem, "Origem", class: "form-label" %>
+    <%= f.text_field :origem, class: "form-control", placeholder: "Ex: São Paulo - SP" %>
+  </div>
+
+  <%# Campo para destino %>
+  <div class="mb-3">
+    <%= f.label :destino, "Destino", class: "form-label" %>
+    <%= f.text_field :destino, class: "form-control", placeholder: "Ex: Rio de Janeiro - RJ" %>
+  </div>
+
+  <%# Campo para data_saida %>
+  <div class="mb-3">
+    <%= f.label :data_saida, "Data de Saída", class: "form-label" %>
+    <%= f.date_field :data_saida, class: "form-control" %>
+  </div>
+
+  <%# Campo para data_chegada %>
+  <div class="mb-3">
+    <%= f.label :data_chegada, "Data de Chegada", class: "form-label" %>
+    <%= f.date_field :data_chegada, class: "form-control" %>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <%= f.submit "Salvar Frete", class: "btn btn-primary" %>
+    <%# Certifique-se de que `fretes_path` é a rota correta para listar os fretes %>
+    <%= botoes_aplicacao(fretes_path, "Cancelar") %>
+  </div>
+<% end %>

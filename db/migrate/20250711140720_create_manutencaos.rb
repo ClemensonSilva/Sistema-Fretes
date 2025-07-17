@@ -4,7 +4,8 @@ class CreateManutencaos < ActiveRecord::Migration[8.0]
       t.references :veiculo
       t.integer :tipo
       t.string :descricao
-      t.date :data_realizacao
+      t.date :data_agendada
+      t.date :data_entrega_veiculo
       t.float :custo
       t.string :oficina
       t.timestamps

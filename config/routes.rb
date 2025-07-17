@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "home/index"
-  devise_for :funcionario
+  devise_for :funcionarios
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,7 +14,33 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "home#index"
-  get 'motorista/dashboard', to: 'motorista#show', as: :motorista_dashboard
-  get 'gerente/dashboard', to: 'gerente#show', as: :gerente_dashboard
 
+  # motoristas
+  get "motoristas/show", to: "motoristas#dashboard", as: :motorista_dashboard
+  get "motoristas", to: "motoristas#index", as: :lista_motoristas
+
+  get "gerente/show", to: "gerente#dashboard", as: :gerente_dashboard
+  get "funcionario/show/:id", to: "funcionario#show", as: :funcionario_detalhes
+
+
+  # manutencoes
+  resources :manutencaos
+  get "manutencaos", to: "manutencao#index", as: :lista_manutencoes
+  get "manutencaos/:id", to: "manutencao#show", as: :manutencao_detalhes
+
+
+  # abastecimentos
+  resources :abastecimentos
+  get "abastecimentos", to: "abastecimento#index", as: :lista_abastecimentos
+  get "abastecimento/:id", to: "abastecimento#show", as: :abastecimento_detalhes
+
+  # fretes
+  resources :fretes
+  get "fretes", to: "frete#index", as: :lista_fretes
+  #cnhs
+  resources :cnhs
+  # veiculos
+  resources :veiculos
+  get "veiculos", to: "veiculos#index", as: :lista_veiculos
+  # get 'veiculos/:id/tipo_combustivel_select', to: 'veiculos#tipo_combustivel', as: :veiculo_tipo_combustivel_select
 end

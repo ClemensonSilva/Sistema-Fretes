@@ -1,0 +1,39 @@
+
+<div class="card shadow-sm mb-4 rounded-3 border-0">
+  <div class="card-header bg-primary text-white fw-bold py-3 d-flex align-items-center rounded-top-3">
+    <i class="bi bi-person-fill fs-4 me-2"></i> Dados Pessoais do Funcionário
+  </div>
+  <%# se o usuario for um motorista, passa como @funcionario seu proprio login senao, passa os funcionarios para serem mostrados na view %>
+  <%if current_funcionario.motorista? %>
+       <% @funcionario = current_funcionario %>
+    <%else %>
+<% end %>
+  <div class="card-body p-4">
+    <div class="row align-items-center mb-3">
+
+      <div class="col-md-9">
+        <p class="mb-1"><strong class="text-dark">Nome:</strong> <span class="text-secondary"><%= @funcionario.nome %></span></p>
+        <p class="mb-1"><strong class="text-dark">CPF:</strong> <span class="text-secondary"><%= @funcionario.cpf %></span></p>
+        <p class="mb-1"><strong class="text-dark">E-mail:</strong> <span class="text-secondary"><%= @funcionario.email %></span></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-1"><strong class="text-dark">Cargo:</strong> <span class="text-secondary"><%= @funcionario.cargo %></span></p>
+        <p class="mb-1"><strong class="text-dark">Região de Atuação:</strong> <span class="text-secondary"><%= @funcionario.regiao_atuacao %></span></p>
+        <% if current_funcionario.motorista? %>
+          <p class="mb-1"><strong class="text-dark">Supervisor:</strong> <span class="text-secondary"><%= @funcionario.supervisor.nome %></span></p>
+        <%end %>
+        <p class="mb-1"><strong class="text-dark">Categoria Cnh:</strong> <span class="text-secondary"><%= @funcionario.cnh.cat_cnh %></span></p>
+      </div>
+      <div class="d-flex justify-content-end mt-4">
+        <p class="mb-1"><%= botoes_aplicacao(cnh_path(@funcionario.cnh.id), "Detalhar CNH") %></span>
+        </p>
+        <% if current_funcionario.gerente? %>
+          <p class="mb-1"><%= botoes_aplicacao(lista_motoristas_path(), "Voltar") %></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

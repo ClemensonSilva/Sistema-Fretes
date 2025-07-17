@@ -8,7 +8,7 @@ class CreateFretes < ActiveRecord::Migration[8.0]
       t.string :origem
       t.string :destino
       t.date :data_chegada
-      t.string :data_saida
+      t.date :data_saida
 
       t.timestamps
     end

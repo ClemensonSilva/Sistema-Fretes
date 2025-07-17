@@ -1,0 +1,59 @@
+<%# app/views/manutencoes/_form.html.erb %>
+<%#
+  Este partial espera uma variável local 'manutencao'
+  (que pode ser @manutencao do controller, ou Manutencao.new para criação/edição).
+%>
+
+<%= form_with(model: manutencao, local: true) do |f| %>
+  <% if manutencao.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(manutencao.errors.count, "erro") %> impediram que esta manutenção fosse salva:</h2>
+      <ul>
+        <% manutencao.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= veiculo_selection_field(f) %>
+
+  <div class="mb-3">
+    <%= f.label :tipo, "Tipo de Manutenção", class: "form-label" %>
+    <%# Se 'tipo' for um enum no seu modelo Manutencao: %>
+    <%= f.select :tipo, Manutencao.tipos.keys.map { |t| [t.humanize, t] }, { prompt: "Selecione o tipo" }, class: "form-select" %>
+    <%# Se 'tipo' for apenas uma string, você pode usar um text_field ou um select com opções fixas: %>
+    <%# <%= f.text_field :tipo, class: "form-control", placeholder: "Ex: Corretiva, Preventiva" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :descricao, "Descrição", class: "form-label" %>
+    <%= f.text_area :descricao, rows: 4, class: "form-control", placeholder: "Ex: Troca de óleo e filtro de ar" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :data_agendada, "Data Agendada", class: "form-label" %>
+    <%= f.date_field :data_agendada, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :data_entrega_veiculo, "Data de Entrega do Veículo", class: "form-label" %>
+    <%= f.date_field :data_entrega_veiculo, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :custo, "Custo (R$)", class: "form-label" %>
+    <%= f.number_field :custo, step: :any, class: "form-control", placeholder: "Ex: 350.00" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :oficina, "Nome da Oficina", class: "form-label" %>
+    <%= f.text_field :oficina, class: "form-control", placeholder: "Ex: Mecânica do Zé" %>
+  </div>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <%= f.submit "Salvar Manutenção", class: "btn btn-primary" %>
+    <%# Ajuste o link 'lista_manutencoes_path' para a rota correta do seu aplicativo %>
+    <%= botoes_aplicacao(lista_manutencoes_path, "Cancelar") %>
+  </div>
+<% end %>
