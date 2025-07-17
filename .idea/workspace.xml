@@ -5,17 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b08a3e7-13b2-4729-82e3-319de263c3bc" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules/.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/funcionario_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/funcionario_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/manutencaos_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/manutencaos_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/veiculos_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/veiculos_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/funcionario.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/funcionario.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/gerente.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/gerente.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/funcionario/show.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/funcionario/show.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/manutencaos/_manutencao.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manutencaos/_manutencao.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/motoristas/dashboard.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/motoristas/dashboard.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/veiculos/_veiculo.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/veiculos/_veiculo.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/abastecimentos_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/abastecimentos_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/application_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/application_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/javascript/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/application.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/abastecimento.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/abastecimento.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/abastecimentos/_abastecimento.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/abastecimentos/_abastecimento.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/abastecimentos/_form.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/abastecimentos/_form.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/abastecimentos/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/abastecimentos/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/importmap.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,6 +32,7 @@
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="ERB File" />
+        <option value="Ruby File" />
       </list>
     </option>
   </component>
@@ -59,9 +64,9 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
     "RunOnceActivity.git.unshallow": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1752757692928",
-    "git-widget-placeholder": "criacaoViews",
-    "last_opened_file_path": "/home/hall-9000/Faculdade/Banco de Dados/Sistema-Fretes/app/views/abastecimentos",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1752793418354",
+    "git-widget-placeholder": "criacaoPDF",
+    "last_opened_file_path": "/home/hall-9000/Faculdade/Banco de Dados/Sistema-Fretes/app/controllers",
     "list.type.of.created.stylesheet": "CSS",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -75,13 +80,14 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/controllers" />
       <recent name="$PROJECT_DIR$/app/views/abastecimentos" />
       <recent name="$PROJECT_DIR$/app/views/veiculo" />
       <recent name="$PROJECT_DIR$/app/views/frete" />
       <recent name="$PROJECT_DIR$/app/views/abastecimento" />
-      <recent name="$PROJECT_DIR$/app/views/gerente" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/pdf_generators" />
       <recent name="$PROJECT_DIR$/app/views/funcionario" />
     </key>
   </component>
@@ -229,7 +235,9 @@
       <workItem from="1752603231102" duration="11952000" />
       <workItem from="1752662130863" duration="25712000" />
       <workItem from="1752717212417" duration="297000" />
-      <workItem from="1752757632724" duration="13002000" />
+      <workItem from="1752757632724" duration="15612000" />
+      <workItem from="1752783369872" duration="8158000" />
+      <workItem from="1752793357595" duration="2992000" />
     </task>
     <servers />
   </component>

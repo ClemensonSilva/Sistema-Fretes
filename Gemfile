@@ -21,6 +21,9 @@ gem 'devise'
 # Use Active Model has_secure_password [https://guides.rubyonrails.org/active_model_basics.html#securepassword]
 # gem "bcrypt", "~> 3.1.7"
 gem "cssbundling-rails"
+# gem para pdf
+gem "prawn"
+gem 'prawn-table'
 
 # reatividade js
 gem "popper_js", "~> 2.11"

@@ -20,7 +20,7 @@
 
   <div class="mb-3 ">
     <%= f.label :tipo_combustivel, "Tipo de Combustível", class: "form-label " %>
-    <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize.uppcase, a] }, { prompt: "Selecione o combustível" },
+    <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize, a] }, { prompt: "Selecione o combustível" },
                  class: "form-select" %>
   </div>
 
