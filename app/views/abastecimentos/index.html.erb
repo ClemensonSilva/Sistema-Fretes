@@ -13,7 +13,10 @@
              { header: "Data do Abastecimento", custom_render: Proc.new { |abastecimento|
                # Combina a data formatada e o botão 'Detalhar' na mesma célula
                "#{l(abastecimento.data_abastecimento)} <br>".html_safe +
-                 link_to('Detalhar', abastecimento_detalhes_path(abastecimento), class: 'btn btn-sm btn-success mt-1')
+                 botoes_aplicacao(abastecimento_path(abastecimento), "Detalhar") +
+                 botoes_aplicacao(edit_abastecimento_path(abastecimento), "Editar") +
+                 botoes_aplicacao(abastecimento_path(abastecimento), "Excluir", :delete)
+
              }
              }
            ],

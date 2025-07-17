@@ -1,6 +1,8 @@
 
 module VeiculoHelper
 
+
+
   def placa_modelo(veiculo)
     "#{veiculo.placa} -  #{veiculo.modelo}"
   end

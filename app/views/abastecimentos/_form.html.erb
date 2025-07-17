@@ -1,0 +1,54 @@
+<%# app/views/abastecimentos/_form.html.erb %>
+<%#
+  Este partial espera uma variável local 'abastecimento'
+  (que pode ser @abastecimento do controller, ou Abastecimento.new para criação).
+%>
+
+<%= form_with(model: abastecimento, local: true) do |f| %>
+  <% if abastecimento.errors.any? %>
+    <div id="error_explanation" class="alert alert-danger">
+      <h2><%= pluralize(abastecimento.errors.count, "erro") %> impediram que este abastecimento fosse salvo:</h2>
+      <ul>
+        <% abastecimento.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>]
+    </div>
+  <% end %>
+  <%= veiculo_selection_field(f)%>
+
+
+  <div class="mb-3 ">
+    <%= f.label :tipo_combustivel, "Tipo de Combustível", class: "form-label " %>
+    <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize, a] }, { prompt: "Selecione o combustível" },
+                 class: "form-select" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :data_abastecimento, "Data do Abastecimento", class: "form-label" %>
+    <%= f.date_field :data_abastecimento, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :quantidade_litros, "Quantidade (Litros)", class: "form-label" %>
+    <%= f.number_field :quantidade_litros, step: :any, class: "form-control", placeholder: "Ex: 35.00" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :preco_litro, "Preço por Litro", class: "form-label" %>
+    <%= f.number_field :preco_litro, step: :any, class: "form-control", placeholder: "Ex: 5.89" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :nome_posto, "Nome do Posto", class: "form-label" %>
+    <%= f.text_field :nome_posto, class: "form-control", placeholder: "Ex: Posto Shell" %>
+  </div>
+
+  <%# Exemplo de como adicionar campos para associações (se o Abastecimento pertencer a Veículo ou Funcionário) %>
+  <%# Se você tiver um modelo Veiculo e quiser associar: %>
+
+  <div class="d-flex justify-content-between align-items-center mt-4">
+    <%= f.submit "Salvar Abastecimento", class: "btn btn-primary" %>
+    <%=botoes_aplicacao(lista_abastecimentos_path, "Cancelar")  %>
+  </div>
+<% end %>

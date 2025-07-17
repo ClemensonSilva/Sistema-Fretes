@@ -16,25 +16,30 @@ Rails.application.routes.draw do
   root to: "home#index"
   # funcionarios
 
-  #motoristas
-  get 'motorista/show', to: 'motorista#dashboard', as: :motorista_dashboard
-  get 'motoristas', to: 'motorista#index', as: :lista_motoristas
+  # motoristas
+  get "motoristas/show", to: "motoristas#dashboard", as: :motorista_dashboard
+  get "motoristas", to: "motoristas#index", as: :lista_motoristas
 
-  get 'gerente/show', to: 'gerente#dashboard', as: :gerente_dashboard
-  get 'funcionario/:id', to: 'funcionario#show', as: :funcionario_detalhes
+  get "gerente/show", to: "gerente#dashboard", as: :gerente_dashboard
+  get "funcionario/:id", to: "funcionario#show", as: :funcionario_detalhes
+
+
   # manutencoes
-  get 'manutencoes', to: 'manutencao#index', as: :lista_manutencoes
-  get 'manutencao/:id', to: 'manutencao#show', as: :manutencao_detalhes
+  resources :manutencaos
+  get "manutencaos", to: "manutencao#index", as: :lista_manutencoes
+  get "manutencaos/:id", to: "manutencao#show", as: :manutencao_detalhes
+
+
   # abastecimentos
-  get 'abastecimentos', to: 'abastecimento#index', as: :lista_abastecimentos
-  get 'abastecimento/:id', to: 'abastecimento#show', as: :abastecimento_detalhes
+  resources :abastecimentos
+  get "abastecimentos", to: "abastecimento#index", as: :lista_abastecimentos
+  get "abastecimento/:id", to: "abastecimento#show", as: :abastecimento_detalhes
+
   # fretes
-  get 'fretes', to: 'frete#index', as: :lista_fretes
-  get 'frete/:id', to: 'frete#show', as: :frete_detalhes
-  #veiculos
-  get 'veiculos', to: 'veiculo#index', as: :lista_veiculos
-  get 'veiculo/:id', to: 'veiculo#show', as: :veiculo_detalhes
-
-  resources :veiculo, only: [:edit , :destroy, :create]
-
+  get "fretes", to: "frete#index", as: :lista_fretes
+  get "frete/:id", to: "frete#show", as: :frete_detalhes
+  # veiculos
+  resources :veiculos
+  get "veiculos", to: "veiculos#index", as: :lista_veiculos
+  # get 'veiculos/:id/tipo_combustivel_select', to: 'veiculos#tipo_combustivel', as: :veiculo_tipo_combustivel_select
 end

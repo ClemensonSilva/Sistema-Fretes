@@ -5,38 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="8b08a3e7-13b2-4729-82e3-319de263c3bc" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules/.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/abastecimento/_form.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/abastecimento/edit.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manutencao/_form.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manutencao/edit.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/manutencao/new.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/veiculo/_form.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/veiculo/edit.html.erb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/veiculo/new.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/abastecimento_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/abastecimento_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/frete_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/frete_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/gerente_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/gerente_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/manutencao_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/manutencao_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/motorista_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/motorista_controller.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/veiculo_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/veiculo_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/frete_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/frete_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers/motorista_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/motorista_helper.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/javascript/application.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/javascript/application.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/cnh.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/cnh.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/funcionario.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/funcionario.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models/gerente.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/gerente.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/application_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/application_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/helpers/veiculo_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers/veiculo_helper.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/abastecimento.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/abastecimento.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/models/veiculo.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/models/veiculo.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/abastecimento/_abastecimento.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/abastecimento/_abastecimento.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/views/abastecimento/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/abastecimento/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/frete/_frete.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/frete/_frete.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/frete/_tabela_links_fretes.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/frete/_tabela_links_fretes.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/frete/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/frete/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/funcionario/_tabela_links_funcionarios.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/gerente/dashboard.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/gerente/dashboard.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/motorista/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/motorista/index.html.erb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/dev" beforeDir="false" afterPath="$PROJECT_DIR$/bin/dev" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/importmap.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/importmap.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/initializers/assets.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/initializers/assets.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/frete/_tabela_links_fretes.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manutencao/_manutencao.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manutencao/_manutencao.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manutencao/_tabela_links_manutencoes.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/manutencao/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/manutencao/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/veiculo/_veiculo.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/veiculo/_veiculo.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/veiculo/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/veiculo/index.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/seeds.rb" beforeDir="false" afterPath="$PROJECT_DIR$/db/seeds.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +83,7 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "ruby.structure.view.model.defaults.configured": "true",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "settings.editor.selected.configurable": "preferences.keymap",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -248,7 +241,7 @@
       <workItem from="1752529637639" duration="1222000" />
       <workItem from="1752533859913" duration="9354000" />
       <workItem from="1752603231102" duration="11952000" />
-      <workItem from="1752662130863" duration="3149000" />
+      <workItem from="1752662130863" duration="25712000" />
     </task>
     <servers />
   </component>
