@@ -1,0 +1,42 @@
+<%# _cnh_info.erb %>
+
+<div class="card shadow-sm mb-4 rounded-3 border-0">
+  <div class="card-header bg-primary text-white fw-bold py-3 d-flex align-items-center rounded-top-3">
+    <i class="bi bi-file-earmark-person-fill fs-4 me-2"></i> Dados da CNH
+  </div>
+  <div class="card-body p-4">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-1"><strong class="text-dark">Nº Registro:</strong> <span class="text-secondary"><%= @cnh.numero_registro %></span></p>
+        <p class="mb-1">
+          <strong class="text-dark">Categoria:</strong>
+          <span class="badge bg-primary fs-6  fw-bold "><%= @cnh.cat_cnh %></span>
+        </p>
+        <p class="mb-1"><strong class="text-dark">Primeira CNH:</strong> <span class="text-secondary"><%= @cnh.primeira_cnh.strftime("%d/%m/%Y") %></span></p>
+      </div>
+      <div class="col-md-6">
+        <p class="mb-1">
+          <strong class="text-dark">Status:</strong>
+          <strong class="badge <%= cnh_status_cor_classe(@cnh.status) %> fw-bold"><%= @cnh.status%></strong>
+        </p>
+        <p class="mb-1"><strong class="text-dark">Data Expedição:</strong> <span class="text-secondary"><%= @cnh.data_expedicao.strftime("%d/%m/%Y") %></span></p>
+        <p class="mb-1"><strong class="text-dark">Validade:</strong> <span class="text-secondary"><%= @cnh.validade.strftime("%d/%m/%Y") %></span></p>
+      </div>
+    </div>
+    <% if @cnh.observacoes.present? %>
+    <hr class="my-3">
+    <p class="mb-1"><strong class="text-dark">Observações:</strong> <span class="text-secondary"><%= @cnh.observacoes %></span></p>
+    <% end %>
+    <div class="d-flex justify-content-end mt-4">
+      <p class="mb-1"><%= botoes_aplicacao(edit_cnh_path(@cnh), "Editar") %></span></p>
+      <% if current_funcionario.gerente? %>
+          <p class="mb-1"><%= botoes_aplicacao(lista_motoristas_path, "Voltar") %></span></p>
+        <% else %>
+          <p class="mb-1"><%= botoes_aplicacao(motorista_dashboard_path, "Voltar") %></span></p>
+    <% end %>
+
+    </div>
+    <hr class="my-3">
+
+  </div>
+</div>

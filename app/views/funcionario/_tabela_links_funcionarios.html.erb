@@ -1,17 +1,27 @@
 <%# app/views/funcionarios/_tabela_funcionarios.html.erb %>
 
-<h2>ALOO</h2>
+<%# Este é o container do cabeçalho da tabela. %>
 
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Registros de Fretes</h2>
+  <%=  botoes_aplicacao(new_funcionario_registration_path, "Cadastrar Funcionario")
+  %>
+</div>
 <%= render 'layouts/shared_table',
            collection: @funcionarios, # Passa a coleção de funcionários
            columns: [
              { header: "Nome", attribute: :nome }, # Atributo direto
              { header: "CPF", attribute: :cpf },   # Atributo direto
              { header: "Status CNH", custom_render: Proc.new { |funcionario|
-               # Lógica complexa da célula, incluindo o botão Detalhar
-               "#{funcionario.get_cnh(funcionario.id)} <br>".html_safe + # Use html_safe para <br>
-                 link_to('Detalhar', funcionario_detalhes_path(funcionario), class: 'btn btn-sm btn-success mt-1')
-             }
+               "#{funcionario.get_cnh(funcionario.id)} <br>".html_safe  # Use html_safe para <br>
+             }},
+             { header: "Ações",
+               custom_render: Proc.new { |funcionario|
+                  botoes_aplicacao(funcionario_detalhes_path(funcionario), "Detalhar") +
+                   botoes_aplicacao(edit_funcionario_registration_path(funcionario), "Editar") +
+                   botoes_aplicacao(funcionario_registration_path(funcionario), 'Excluir', :delete)
+               }
              }
            ],
            empty_message: "Nenhum funcionário sob sua supervisão."

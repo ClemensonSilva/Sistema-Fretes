@@ -3,4 +3,7 @@ class FuncionarioController < ApplicationController
   def show
     @funcionario = Funcionario.find(params[:id])
   end
+  def edit
+
+  end
 end

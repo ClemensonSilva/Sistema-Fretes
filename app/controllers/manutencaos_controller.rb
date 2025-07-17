@@ -8,6 +8,7 @@ class ManutencaosController < ApplicationController
   def new
     @manutencao = Manutencao.new
   end
+
   def edit
     @manutencao = Manutencao.find(params[:id])
   end
@@ -34,7 +35,7 @@ class ManutencaosController < ApplicationController
     @manutencao = Manutencao.find(params[:id])
     @manutencao.update(manutencao_params)
     if @manutencao.update(manutencao_params)
-      redirect_to manutencao_detalhes_path
+      redirect_to manutencao_detalhes_path,  notice: "Edição concluída com sucesso"
     else
       render "edit", status: :unprocessable_entify
     end

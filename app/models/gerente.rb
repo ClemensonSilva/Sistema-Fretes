@@ -1,8 +1,13 @@
 class Gerente < Funcionario
   # relacionamentos
-  has_many :motoristas, foreign_key: :supervisor_id
-  has_many :fretes , through: :motoristas
+  has_many :motoristas, class_name: "Motorista", foreign_key: :supervisor_id , dependent: :destroy
+  has_many :fretes, through: :motoristas
   has_many :veiculos, through: :fretes
+
+
+  def self.get_supervisores
+    Gerente.all
+  end
 
   def get_fretes_supervisionados
     self.fretes
@@ -14,11 +19,16 @@ class Gerente < Funcionario
     self.veiculos
   end
   def get_manutencoes_supervisionadas
-    self.veiculos.manutencaos
+    veiculos = self.veiculos
+    veiculos.each do |veiculo|
+      veiculo.manutencaos
+    end
+    veiculos
   end
   def get_abastecimentos_supervisionados
-    self.veiculos.abastecimentos
+    veiculos = self.veiculos
+    veiculos.each do |veiculo|
+      veiculo.abastecimentos
+    end
   end
-
-
 end

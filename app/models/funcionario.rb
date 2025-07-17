@@ -13,6 +13,10 @@ class Funcionario < ApplicationRecord
     Funcionario.find_by(id: funcionario_id).cnh.status
   end
 
+  def self.get_regioes_disponiveis
+    Funcionario.all
+  end
+
   def motorista?
     self.cargo == "Motorista"
   end

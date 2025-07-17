@@ -1,0 +1,21 @@
+<%# app/views/fretes/index.html.erb %>
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Registros de Fretes</h2>
+  <%=  botoes_aplicacao(new_frete_path, "Cadastrar frete")
+  %>
+</div>
+<%= render 'layouts/shared_table', # Assuming you moved/renamed the partial to shared/_reusable_table.html.erb
+           collection: @fretes,
+           columns: [
+             { header: "Veículo", custom_render: Proc.new { |frete| placa_modelo(frete.veiculo)  } },
+             { header: "Motorista", custom_render: Proc.new { |frete| dados_motorista(frete.funcionario) } },
+             { header: "Preço", custom_render: Proc.new { |frete| number_to_currency(frete.preco, unit: "R$", separator: ",", delimiter: ".") } },
+             { header: "Status", custom_render: Proc.new { |frete| frete_status_texto(frete.status) } },
+             { header: "Ações", custom_render: Proc.new { |frete|
+             botoes_aplicacao(frete_path(frete), "Detalhar") +
+             botoes_aplicacao(edit_frete_path(frete), "Editar") +
+             botoes_aplicacao(frete_path(frete), "Excluir", :delete)
+             }},
+           empty_message: "Nenhum frete sob sua supervisão."]
+%>

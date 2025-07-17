@@ -1,0 +1,92 @@
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+    <h4 class="mb-0">Detalhes do Frete <span class="badge bg-light text-primary ms-2">#<%= @frete.id %></span></h4>
+    <%= details_card_header(@frete, edit_frete_path(@frete), "Detalhes do veiculo")%>
+
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-primary mb-3"><i class="bi bi-geo-alt-fill me-2"></i>Frete de <span class="fw-bold"><%= @frete.origem %></span> para <span class="fw-bold"><%= @frete.destino %></span></h5>
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="pb-3"> <%# Usando pb-3 para espaçamento em vez de margin-bottom no .detail-item %>
+          <strong class="d-block mb-1"><i class="bi bi-truck me-2"></i>Veículo:</strong>
+          <span class="text-muted">
+            <% if @frete.veiculo.present? %>
+              <%= placa_modelo(@frete.veiculo) %>
+            <% else %>
+              <em class="text-warning">Não atribuído</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-person-fill me-2"></i>Motorista:</strong>
+          <span class="text-muted">
+            <% if @frete.funcionario.present? %>
+              <%= dados_motorista(@frete.funcionario)%>
+            <% else %>
+              <em class="text-warning">Não atribuído</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-4">
+
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-calendar-check-fill me-2"></i>Data de Saída:</strong>
+          <span class="text-muted">
+            <% if @frete.data_saida.present? %>
+              <%= l(@frete.data_saida) %>
+            <% else %>
+              <em class="text-info">Não informada</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-calendar-range-fill me-2"></i>Chegada Prevista:</strong>
+          <span class="text-muted">
+            <% if @frete.data_chegada.present? %>
+              <%= l(@frete.data_chegada) %>
+            <% else %>
+              <em class="text-info">Não prevista</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-cash-coin me-2"></i>Preço:</strong>
+          <span class="text-success fw-bold fs-5">
+            <% if @frete.preco.present? %>
+              <%= number_to_currency(@frete.preco, unit: "R$", separator: ",", delimiter: ".") %>
+            <% else %>
+              <em class="text-warning">Preço pendente</em>
+            <% end %>
+          </span>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="pb-3">
+          <strong class="d-block mb-1"><i class="bi bi-info-circle-fill me-2"></i>Status:</strong>
+          <span class="<%= frete_status_cor_classe(@frete.status) %> fw-bold">
+            <%= frete_status_texto(@frete.status) %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer bg-light d-flex justify-content-end">
+    <%=botoes_aplicacao(lista_fretes_path, "Voltar") %>
+  </div>
+</div>
+
+<%# Inclua a CDN do Bootstrap Icons no seu layout principal (application.html.erb) ou aqui, se for um componente isolado %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
