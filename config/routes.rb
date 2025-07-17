@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   get "home/index"
-  devise_for :funcionario
+  devise_for :funcionarios
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
@@ -14,14 +14,13 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "home#index"
-  # funcionarios
 
   # motoristas
   get "motoristas/show", to: "motoristas#dashboard", as: :motorista_dashboard
   get "motoristas", to: "motoristas#index", as: :lista_motoristas
 
   get "gerente/show", to: "gerente#dashboard", as: :gerente_dashboard
-  get "funcionario/:id", to: "funcionario#show", as: :funcionario_detalhes
+  get "funcionario/show/:id", to: "funcionario#show", as: :funcionario_detalhes
 
 
   # manutencoes
@@ -36,8 +35,10 @@ Rails.application.routes.draw do
   get "abastecimento/:id", to: "abastecimento#show", as: :abastecimento_detalhes
 
   # fretes
+  resources :fretes
   get "fretes", to: "frete#index", as: :lista_fretes
-  get "frete/:id", to: "frete#show", as: :frete_detalhes
+  #cnhs
+  resources :cnhs
   # veiculos
   resources :veiculos
   get "veiculos", to: "veiculos#index", as: :lista_veiculos
