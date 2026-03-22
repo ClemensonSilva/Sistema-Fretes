@@ -21,7 +21,6 @@
   </head>
 
   <body>
-    <%# --- INÍCIO DOS BALÕEZINHOS (TOASTS) --- %>
     <div id="flash-messages" class="position-fixed top-0 end-0 p-4" style="z-index: 1055;">
       
       <% if notice %>
@@ -30,7 +29,6 @@
           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
       <% end %>
-    <%# Script para fechar o balão sozinho (funciona com o Turbo do Rails 7) %>
 
       <% if alert %>
         <div class="alert alert-danger alert-dismissible fade show shadow-lg rounded-3 border-0" role="alert" style="min-width: 250px;">
@@ -41,7 +39,6 @@
 
     </div>
 
-    <%# Script para fechar o balão sozinho (funciona com o Turbo do Rails 7) %>
     <script>
       document.addEventListener("turbo:load", function() {
         setTimeout(function() {
@@ -55,7 +52,6 @@
         }, 4000); // 4000 milissegundos = 4 segundos
       });
     </script>
-    <%# --- FIM DOS BALÕEZINHOS --- %>
 
     <% if funcionario_signed_in? %>
       

@@ -1,51 +1,41 @@
-<%# app/views/shared/_reusable_table.html.erb (or your _tabela_fretes.html.erb, renamed to be generic) %>
-
-<%#
-  This partial is designed to be highly reusable.
-  It expects the following local variables:
-  - collection: The array of objects to display (e.g., @fretes, @vehicles).
-  - columns: An array of hashes, where each hash defines a column:
-             { header: "Column Header", attribute: :item_attribute, custom_render: Proc.new { |item| ... } }
-             - 'attribute' is used for direct item attributes.
-             - 'custom_render' is a Proc for complex cell content, taking the 'item' as argument.
-  - empty_message: The message to show if the collection is empty.
-%>
-
-<%
-  collection ||= []
-  columns ||= []
-  empty_message ||= "No records found."
-%>
+<% collection ||= [] %>
+<% columns ||= [] %>
+<% empty_message ||= "Nenhum registro encontrado." %>
 
 <% if collection.any? %>
-  <table class="table table-striped table-bordered">
-    <thead class="thead-dark">
-    <tr>
-      <% columns.each do |col| %>
-        <th><%= col[:header] %></th>
-      <% end %>
-    </tr>
-    </thead>
-    <tbody>
-    <% collection.each do |item| %>
-      <tr>
-        <% columns.each do |col| %>
-          <td>
-            <% if col[:custom_render] %>
-              <%= col[:custom_render].call(item) %>
-            <% elsif col[:attribute] %>
-              <%= item.send(col[:attribute]) rescue nil %>
-            <% else %>
-              N/A
+  <div class="card shadow-sm border-0 rounded-3">
+    <div class="table-responsive">
+      <table class="table table-hover align-middle mb-0">
+        <thead class="table-light text-secondary">
+          <tr>
+            <% columns.each do |col| %>
+              <th class="fw-semibold border-bottom"><%= col[:header] %></th>
             <% end %>
-          </td>
-        <% end %>'
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+          </tr>
+        </thead>
+        <tbody>
+          <% collection.each do |item| %>
+            <tr>
+              <% columns.each do |col| %>
+                <td class="border-bottom-0 border-top text-dark">
+                  <% if col[:custom_render] %>
+                    <%= col[:custom_render].call(item) %>
+                  <% elsif col[:attribute] %>
+                    <%= item.send(col[:attribute]) rescue nil %>
+                  <% else %>
+                    N/A
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 <% else %>
-  <div class="alert alert-info" role="alert">
+  <div class="alert alert-light text-center border-dashed py-5 text-muted" role="alert">
+    <i class="bi bi-inbox fs-2 d-block mb-2"></i>
     <%= empty_message %>
   </div>
 <% end %>

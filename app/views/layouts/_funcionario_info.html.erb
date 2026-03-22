@@ -1,39 +1,68 @@
-
-<div class="card shadow-sm mb-4 rounded-3 border-0">
-  <div class="card-header bg-primary text-white fw-bold py-3 d-flex align-items-center rounded-top-3">
-    <i class="bi bi-person-fill fs-4 me-2"></i> Dados Pessoais do Funcionário
+<div class="card shadow-sm border-0 rounded-3 mb-4">
+  <div class="card-header bg-white border-bottom py-3 d-flex align-items-center rounded-top-3">
+    <i class="bi bi-person-vcard fs-4 text-primary me-2"></i>
+    <h5 class="mb-0 fw-bold text-gray-800">Dados Pessoais do Funcionário</h5>
   </div>
-  <%# se o usuario for um motorista, passa como @funcionario seu proprio login senao, passa os funcionarios para serem mostrados na view %>
-  <%if current_funcionario.motorista? %>
-       <% @funcionario = current_funcionario %>
-    <%else %>
-<% end %>
-  <div class="card-body p-4">
-    <div class="row align-items-center mb-3">
 
-      <div class="col-md-9">
-        <p class="mb-1"><strong class="text-dark">Nome:</strong> <span class="text-secondary"><%= @funcionario.nome %></span></p>
-        <p class="mb-1"><strong class="text-dark">CPF:</strong> <span class="text-secondary"><%= @funcionario.cpf %></span></p>
-        <p class="mb-1"><strong class="text-dark">E-mail:</strong> <span class="text-secondary"><%= @funcionario.email %></span></p>
+  <div class="card-body p-4">
+    <div class="row g-4">
+      
+      <div class="col-md-6">
+        <h6 class="text-muted fw-bold mb-3 border-bottom pb-2">Informações Principais</h6>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">Nome Completo</small>
+          <span class="fw-medium text-dark fs-6"><%= @funcionario.nome %></span>
+        </div>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">CPF</small>
+          <span class="fw-medium text-dark"><%= @funcionario.cpf %></span>
+        </div>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">E-mail</small>
+          <span class="fw-medium text-dark"><%= @funcionario.email %></span>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <h6 class="text-muted fw-bold mb-3 border-bottom pb-2">Dados Operacionais</h6>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">Cargo</small>
+          <span class="badge bg-secondary text-white px-2 py-1 rounded-pill"><%= @funcionario.cargo %></span>
+        </div>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">Região de Atuação</small>
+          <span class="fw-medium text-dark"><%= @funcionario.regiao_atuacao %></span>
+        </div>
+        
+        <% if current_funcionario.motorista? && @funcionario.supervisor.present? %>
+          <div class="mb-3">
+            <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">Supervisor</small>
+            <span class="fw-medium text-dark"><%= @funcionario.supervisor.nome %></span>
+          </div>
+        <% end %>
+        
+        <div class="mb-3">
+          <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">Categoria CNH</small>
+          <span class="fw-medium text-dark"><%= @funcionario.cnh.cat_cnh %></span>
+        </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-md-6">
-        <p class="mb-1"><strong class="text-dark">Cargo:</strong> <span class="text-secondary"><%= @funcionario.cargo %></span></p>
-        <p class="mb-1"><strong class="text-dark">Região de Atuação:</strong> <span class="text-secondary"><%= @funcionario.regiao_atuacao %></span></p>
-        <% if current_funcionario.motorista? %>
-          <p class="mb-1"><strong class="text-dark">Supervisor:</strong> <span class="text-secondary"><%= @funcionario.supervisor.nome %></span></p>
-        <%end %>
-        <p class="mb-1"><strong class="text-dark">Categoria Cnh:</strong> <span class="text-secondary"><%= @funcionario.cnh.cat_cnh %></span></p>
-      </div>
-      <div class="d-flex justify-content-end mt-4">
-        <p class="mb-1"><%= botoes_aplicacao(cnh_path(@funcionario.cnh.id), "Detalhar CNH") %></span>
-        </p>
-        <% if current_funcionario.gerente? %>
-          <p class="mb-1"><%= botoes_aplicacao(lista_motoristas_path(), "Voltar") %></p>
+    <div class="d-flex justify-content-end gap-2 mt-4 pt-3 border-top">
+      <% if current_funcionario.gerente? %>
+        <%= link_to lista_motoristas_path, class: "btn btn-outline-secondary" do %>
+          <i class="bi bi-arrow-left me-1"></i> Voltar
         <% end %>
-      </div>
+      <% end %>
+      
+      <%= link_to cnh_path(@funcionario.cnh.id), class: "btn btn-info text-white" do %>
+        <i class="bi bi-card-heading me-1"></i> Detalhar CNH
+      <% end %>
     </div>
   </div>
 </div>

@@ -1,53 +1,41 @@
-<%# app/views/veiculos/_tabela_veiculos.html.erb %>
-
-<%# Este partial agora utiliza o _shared_table para renderizar a tabela de veículos. %>
-<%# Ele espera que @veiculos seja definido no controller. %>
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h2>Registros de Veiculos</h2>
-  <%=  botoes_aplicacao(new_veiculo_path, "Cadastrar veiculo   ")
-  %>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="h3 mb-0 text-gray-800">Registros de Veículos</h2>
+  <%= botoes_aplicacao(new_veiculo_path, "Cadastrar Veículo") %>
 </div>
-<%= render 'layouts/shared_table',
-           collection: @veiculos,
-           columns: [
-             {
-               header: "Placa - Modelo",
-               custom_render: Proc.new { |veiculo|
-                 placa_modelo(veiculo)
-               }
-             },
-             {
-               header: "Categoria",
-               custom_render: Proc.new { |veiculo|
-                 veiculo.categoria_veiculo
-               },
-             },
-             {
-               header: "Quilometragem (km)",
-               custom_render: Proc.new { |veiculo|
-                 number_with_precision(veiculo.quilometragem_km, precision: 2, separator: ",", delimiter: ".")
-               },
-             },
-             {
-               header: "Ano Fabricação",
-               custom_render: Proc.new { |veiculo|
-                 veiculo.ano_fabricacao&.year || "N/A" # Exibe apenas o ano, ou N/A se ausente
-               }
-             },
-             { header: "Ações",
-               custom_render: Proc.new { |veiculo|
-                 botoes_aplicacao(veiculo_path(veiculo), "Detalhar") +
-                   botoes_aplicacao(edit_veiculo_path(veiculo), "Editar") +
-                   botoes_aplicacao(veiculo_path(veiculo), 'Excluir', :delete)
-               }
-             }
 
-    ],
-           empty_heading: "Nenhum veículo encontrado.",
-           empty_message: Proc.new { "<p>Parece que não há veículos registrados em sua frota ainda.</p>".html_safe },
-           empty_cta: Proc.new {
-             link_to new_veiculo_path, class: "btn btn-outline-primary" do
-               tag.i(class: "bi bi-plus-circle me-2") + " Cadastrar Novo Veículo"
-             end
-           }
+<%= render 'layouts/shared_table',
+  collection: @veiculos,
+  columns: [
+    {
+      header: "Placa - Modelo",
+      custom_render: Proc.new { |veiculo| "<span class='fw-medium'>#{placa_modelo(veiculo)}</span>".html_safe }
+    },
+    {
+      header: "Categoria",
+      custom_render: Proc.new { |veiculo| 
+        "<span class='badge bg-secondary text-white px-2 py-1 rounded-pill'>#{veiculo.categoria_veiculo}</span>".html_safe 
+      }
+    },
+    {
+      header: "Quilometragem",
+      custom_render: Proc.new { |veiculo| "#{number_with_precision(veiculo.quilometragem_km, precision: 2, separator: ',', delimiter: '.')} km" }
+    },
+    {
+      header: "Ano",
+      custom_render: Proc.new { |veiculo| veiculo.ano_fabricacao&.year || "N/A" }
+    },
+    { 
+      header: "Ações",
+      custom_render: Proc.new { |veiculo|
+        # O d-flex e gap-2 forçam os botões a ficarem numa linha só com um pequeno espaço entre eles
+        "<div class='d-flex gap-2'>".html_safe +
+          botoes_aplicacao(veiculo_path(veiculo), "Detalhar") +
+          botoes_aplicacao(edit_veiculo_path(veiculo), "Editar") +
+          botoes_aplicacao(veiculo_path(veiculo), 'Excluir', :delete) +
+        "</div>".html_safe
+      }
+    }
+  ],
+  empty_heading: "Nenhum veículo encontrado.",
+  empty_message: Proc.new { "Parece que não há veículos registrados em sua frota ainda." }
 %>

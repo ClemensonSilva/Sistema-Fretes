@@ -1,28 +1,39 @@
 <%# app/views/funcionarios/_tabela_funcionarios.html.erb %>
 
-<%# Este é o container do cabeçalho da tabela. %>
-
-
-<div class="d-flex justify-content-between align-items-center mb-3">
-  <h2>Registros de Fretes</h2>
-  <%=  botoes_aplicacao(new_funcionario_registration_path, "Cadastrar Funcionario")
-  %>
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h2 class="h3 mb-0 text-gray-800">Registros de Funcionários</h2>
+  <%= botoes_aplicacao(new_funcionario_registration_path, "Cadastrar Funcionário") %>
 </div>
+
 <%= render 'layouts/shared_table',
-           collection: @funcionarios, # Passa a coleção de funcionários
-           columns: [
-             { header: "Nome", attribute: :nome }, # Atributo direto
-             { header: "CPF", attribute: :cpf },   # Atributo direto
-             { header: "Status CNH", custom_render: Proc.new { |funcionario|
-               "#{funcionario.get_cnh(funcionario.id)} <br>".html_safe  # Use html_safe para <br>
-             }},
-             { header: "Ações",
-               custom_render: Proc.new { |funcionario|
-                  botoes_aplicacao(funcionario_detalhes_path(funcionario), "Detalhar") +
-                   botoes_aplicacao(edit_funcionario_registration_path(funcionario), "Editar") +
-                   botoes_aplicacao(funcionario_registration_path(funcionario), 'Excluir', :delete)
-               }
-             }
-           ],
-           empty_message: "Nenhum funcionário sob sua supervisão."
+  collection: @funcionarios,
+  columns: [
+    { 
+      header: "Nome", 
+      # Transforma o atributo direto num custom_render para aplicar o fw-medium (negrito suave)
+      custom_render: Proc.new { |funcionario| "<span class='fw-medium'>#{funcionario.nome}</span>".html_safe } 
+    },
+    { 
+      header: "CPF", 
+      attribute: :cpf 
+    },
+    { 
+      header: "Status CNH", 
+      custom_render: Proc.new { |funcionario| 
+        "#{funcionario.get_cnh(funcionario.id)}" 
+      }
+    },
+    { 
+      header: "Ações",
+      custom_render: Proc.new { |funcionario|
+        "<div class='d-flex gap-2'>".html_safe +
+          botoes_aplicacao(funcionario_detalhes_path(funcionario), "Detalhar") +
+          botoes_aplicacao(edit_funcionario_registration_path(funcionario), "Editar") +
+          botoes_aplicacao(funcionario_registration_path(funcionario), 'Excluir', :delete) +
+        "</div>".html_safe
+      }
+    }
+  ],
+  empty_heading: "Nenhum funcionário encontrado.",
+  empty_message: Proc.new { "Nenhum funcionário sob sua supervisão." }
 %>
