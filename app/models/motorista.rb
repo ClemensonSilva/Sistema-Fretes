@@ -8,5 +8,6 @@ class Motorista < Funcionario
     Abastecimento.joins(veiculo: { fretes: :funcionario })
                  .where("abastecimentos.data_abastecimento BETWEEN fretes.data_chegada AND fretes.data_saida")
                  .where(funcionario: { id: current_funcionario_id})
+                 .distinct
   end
 end

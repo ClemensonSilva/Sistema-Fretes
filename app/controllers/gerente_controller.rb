@@ -1,11 +1,16 @@
 class GerenteController < ApplicationController
   before_action :authenticate_funcionario!
   def dashboard
-    @funcionarios = current_funcionario.get_motoristas_supervisionados()
-    @manutencoes = current_funcionario.get_manutencoes_supervisionadas()
-    @fretes = current_funcionario.get_fretes_supervisionados()
-    @abastecimentos = current_funcionario.get_abastecimentos_supervisionados()
-    @veiculos = current_funcionario.get_veiculos_supervisionados()
+    @faturamento_total = Frete.where(status: 'concluido').sum(:preco)
+
+    custo_manutencoes = Manutencao.sum(:custo)
+    custo_abastecimentos = Abastecimento.sum('preco_litro * quantidade_litros') 
+    
+    @custo_operacional = custo_manutencoes + custo_abastecimentos
+
+    @fretes_em_andamento = Frete.where(status: 'em_andamento').count
+
+    @veiculos_total = Veiculo.count
   end
 
 end

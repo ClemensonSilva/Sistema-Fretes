@@ -8,7 +8,11 @@ class FretesController < ApplicationController
     @frete = Frete.find(params[:id])
   end
   def index
-    @fretes = Frete.all
+    if current_funcionario.motorista?
+      @fretes = current_funcionario.fretes
+    else  
+     @fretes = Frete.all
+    end
   end
   def new
     @frete = Frete.new
