@@ -1,0 +1,71 @@
+<%# app/views/layouts/_sidebar.html.erb %>
+
+<div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; min-height: 100vh;">
+  <%= link_to root_path, class: 'd-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none' do %>
+    <span class="fs-4 fw-bold">Sistema de Frete</span>
+  <% end %>
+  
+  <hr>
+
+  <% if !funcionario_signed_in? %>
+    redirect_to new_funcionario_session_path
+  <% end %>
+  <ul class="nav nav-pills flex-column mb-auto">
+    <% if current_funcionario.gerente? %>
+      <li class="nav-item">
+        <%= link_to gerente_dashboard_path, class: "nav-link text-white #{'active' if current_page?(gerente_dashboard_path)}" do %>
+          <i class="bi bi-speedometer2 me-2"></i> Dashboard Gerencial
+        <% end %>
+      </li>
+      <li>
+        <%= link_to lista_fretes_path, class: "nav-link text-white #{'active' if current_page?(lista_fretes_path)}" do %>
+          <i class="bi bi-truck me-2"></i> Fretes
+        <% end %>
+      </li>
+      <li>
+        <%= link_to lista_motoristas_path, class: "nav-link text-white #{'active' if current_page?(lista_motoristas_path)}" do %>
+          <i class="bi bi-people me-2"></i> Motoristas
+        <% end %>
+      </li>
+      <li>
+        <%= link_to lista_veiculos_path, class: "nav-link text-white #{'active' if current_page?(lista_veiculos_path)}" do %>
+          <i class="bi bi-car-front me-2"></i> Veículos
+        <% end %>
+      </li>
+      <li>
+        <%= link_to lista_manutencoes_path, class: "nav-link text-white #{'active' if current_page?(lista_manutencoes_path)}" do %>
+          <i class="bi bi-wrench me-2"></i> Manutenções
+        <% end %>
+      </li>
+      <li>
+        <%= link_to lista_abastecimentos_path, class: "nav-link text-white #{'active' if current_page?(lista_abastecimentos_path)}" do %>
+          <i class="bi bi-fuel-pump me-2"></i> Abastecimentos
+        <% end %>
+      </li>
+    <% end %>
+
+    <% if current_funcionario.motorista? %>
+      <li>
+        <%= link_to motorista_dashboard_path, class: "nav-link text-white #{'active' if current_page?(motorista_dashboard_path)}" do %>
+          <i class="bi bi-house me-2"></i> Dashboard Motorista
+        <% end %>
+      </li>
+      <li>
+        <%= link_to meus_fretes_path, class: "nav-link text-white #{'active' if current_page?(meus_fretes_path)}" do %>
+          <i class="bi bi-box-seam me-2"></i> Meus Fretes
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+
+  <hr>
+
+  <div class="nav-item ">
+    <a href="#" class="d-flex align-items-center text-white text-decoration-none " id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+      <strong><%= current_funcionario.nome %></strong>
+    </a>
+    
+  </div>
+<%= button_to "Sair", destroy_funcionario_session_path, method: :delete, form: { data: { turbo: false } }, class: "btn btn-outline-light w-100" %></div>
+
+

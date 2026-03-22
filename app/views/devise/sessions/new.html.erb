@@ -1,26 +1,44 @@
-<h2>Log in</h2>
+<% content_for :title, "Login | Sistema Fretes" %>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<section class="container py-5 auth-page-bg">
+  <div class="row justify-content-center">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-5">
+      <article class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="card-body p-4 p-md-5">
+          <header class="mb-4 text-center">
+            <span class="badge text-bg-success-subtle text-success-emphasis rounded-pill px-3 py-2 mb-3">Sistema de Fretes</span>
+            <h1 class="h3 mb-2">Entrar na plataforma</h1>
+            <p class="text-body-secondary mb-0">Acesse para acompanhar operacoes, frota e equipe.</p>
+          </header>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "needs-validation", novalidate: true }) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+            <div class="mb-3">
+              <%= f.label :email, "E-mail", class: "form-label fw-semibold" %>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control form-control-lg", placeholder: "voce@empresa.com", required: true, spellcheck: false, autocapitalize: "none" %>
+            </div>
+
+            <div class="mb-3">
+              <%= f.label :password, "Senha", class: "form-label fw-semibold" %>
+              <%= f.password_field :password, autocomplete: "current-password", class: "form-control form-control-lg", placeholder: "Sua senha", required: true %>
+            </div>
+
+            <% if devise_mapping.rememberable? %>
+              <div class="form-check mb-4">
+                <%= f.check_box :remember_me, class: "form-check-input" %>
+                <%= f.label :remember_me, "Lembrar de mim", class: "form-check-label" %>
+              </div>
+            <% end %>
+
+            <div class="d-grid mb-3">
+              <%= f.submit "Entrar", class: "btn btn-success btn-lg" %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>
+        </div>
+      </article>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</section>

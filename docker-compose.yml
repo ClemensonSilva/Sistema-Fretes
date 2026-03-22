@@ -1,0 +1,40 @@
+services:
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    volumes:
+      - pgdata:/var/lib/postgresql 
+ 
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    # Remove o PID antigo e garante que o CSS seja gerado ao subir
+    command: bash -c "rm -f tmp/pids/server.pid && yarn build:css && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/rails:cached
+      - bundle_cache:/usr/local/bundle
+      - /rails/node_modules 
+    ports:
+      - "3000:3000"
+    environment:
+      - RAILS_ENV=development
+      - DATABASE_HOST=db
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=root
+    depends_on:
+      - db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+ 
+volumes:
+  pgdata:
+  bundle_cache:

@@ -1,0 +1,38 @@
+# syntax=docker/dockerfile:1
+ARG RUBY_VERSION=3.3.5
+FROM docker.io/library/ruby:$RUBY_VERSION-slim
+
+# Diretório da aplicação
+WORKDIR /rails
+
+# 1. Instala TUDO o que o Rails 8 e o CSS precisam em um só lugar
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y \
+    curl build-essential git libpq-dev libyaml-dev pkg-config libjemalloc2 libvips postgresql-client && \
+    # Instala Node.js 20 e Yarn
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install -g yarn && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+# 2. Configura o ambiente para DESENVOLVIMENTO (sem travas de Gemfile)
+ENV RAILS_ENV="development" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_DEPLOYMENT="0"
+
+# 3. Instala as Gems e os pacotes JS
+COPY Gemfile Gemfile.lock ./
+RUN bundle install
+
+COPY package.json yarn.lock ./
+RUN yarn install
+
+# 4. Copia o código
+COPY . .
+
+# 5. Script de entrada e permissões (Usando root no dev para evitar erro de volume no Linux)
+RUN chmod +x /rails/bin/docker-entrypoint
+ENTRYPOINT ["/rails/bin/docker-entrypoint"]
+
+EXPOSE 3000
+CMD ["./bin/rails", "server", "-b", "0.0.0.0"]  
