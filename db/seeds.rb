@@ -178,7 +178,8 @@ Abastecimento.create!(
   quantidade_litros: 35.0,
   preco_litro: 5.89,
   nome_posto: "Posto Shell",
-  veiculo: veiculo1
+  veiculo: veiculo1,
+  funcionario: funcionario1
 )
 
 Abastecimento.create!(
@@ -187,7 +188,8 @@ Abastecimento.create!(
   quantidade_litros: 80.0,
   preco_litro: 6.20,
   nome_posto: "Posto Petrobras",
-  veiculo: veiculo2
+  veiculo: veiculo2,
+  funcionario: funcionario2
 )
 
 Abastecimento.create!(
@@ -196,7 +198,17 @@ Abastecimento.create!(
   quantidade_litros: 40.0,
   preco_litro: 4.05,
   nome_posto: "Posto Ipiranga",
-  veiculo: veiculo1
+  veiculo: veiculo1,
+  funcionario: funcionario1
+)
+Abastecimento.create!(
+  tipo_combustivel: 2, # Diesel
+  data_abastecimento: "2024-06-20",
+  quantidade_litros: 60.0,
+  preco_litro: 6.15,
+  nome_posto: "Posto Shell",
+  veiculo: veiculo2,
+  funcionario: funcionario2
 )
 puts "#{Abastecimento.count} Abastecimentos criados."
 puts "----------------------------------"
@@ -257,6 +269,26 @@ Frete.create!(
   data_chegada: "2024-06-12",
   data_saida: "2024-06-11",
   status: 1 # Concluído
+)
+Frete.create!(
+  veiculo: veiculo1,
+  funcionario: funcionario1,
+  preco: 1600.0,
+  origem: "Natal/RN", 
+  destino: "Fortaleza/CE",
+  data_chegada: "2024-07-01",
+  data_saida: "2024-06-30",
+  status: 0 # Em Andamento
+)
+Frete.create!(
+  veiculo: veiculo2,
+  funcionario: funcionario2,
+  preco: 2800.0,
+  origem: "Rio de Janeiro/RJ",
+  destino: "Belo Horizonte/MG",
+  data_chegada: "2024-07-03",
+  data_saida: "2024-07-02",
+  status: 0 # Em Andamento
 )
 
 Frete.create!(

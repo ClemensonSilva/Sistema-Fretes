@@ -1,8 +1,10 @@
-<%# app/views/abastecimentos/_tabela_abastecimentos.html.erb %>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h2 class="h3 mb-0 text-gray-800">Registros de Abastecimentos</h2>
-  <%= botoes_aplicacao(new_abastecimento_path, "Cadastrar Abastecimento") %>
+  
+  <% if current_funcionario.motorista? %>
+  <%= botoes_aplicacao(new_abastecimento_path, "Registrar Abastecimento") %>
+  <% end %>
 </div>
 
 <%= render 'layouts/shared_table',
@@ -45,5 +47,5 @@
     }
   ],
   empty_heading: "Nenhum abastecimento encontrado.",
-  empty_message: Proc.new { "Nenhum registro de abastecimento no sistema." }
+  empty_message:  "Nenhum registro de abastecimento no sistema." 
 %>

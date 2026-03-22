@@ -1,54 +1,70 @@
 <%# app/views/abastecimentos/_form.html.erb %>
-<%#
-  Este partial espera uma variável local 'abastecimento'
-  (que pode ser @abastecimento do controller, ou Abastecimento.new para criação).
-%>
 
-<%= form_with(model: abastecimento, local: true) do |f| %>
+<%# 1. Adicionado html: { multipart: true } para garantir o upload do arquivo %>
+<%= form_with(model: abastecimento, local: true, html: { multipart: true }) do |f| %>
+  
   <% if abastecimento.errors.any? %>
-    <div id="error_explanation" class="alert alert-danger">
-      <h2><%= pluralize(abastecimento.errors.count, "erro") %> impediram que este abastecimento fosse salvo:</h2>
-      <ul>
+    <div id="error_explanation" class="alert alert-danger shadow-sm border-0">
+      <%# 2. Corrigida a pluralização para português %>
+      <h6 class="fw-bold">
+        <%= abastecimento.errors.count == 1 ? "1 erro impediu" : "#{abastecimento.errors.count} erros impediram" %> 
+        que este abastecimento fosse salvo:
+      </h6>
+      <ul class="mb-0 small">
         <% abastecimento.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
-      </ul>]
+      </ul>
     </div>
   <% end %>
-  <%= veiculo_selection_field(f)%>
 
+  <div class="card shadow-sm border-0 p-4">
+    <%= veiculo_selection_field(f) %>
 
-  <div class="mb-3 ">
-    <%= f.label :tipo_combustivel, "Tipo de Combustível", class: "form-label " %>
-    <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize, a] }, { prompt: "Selecione o combustível" },
-                 class: "form-select" %>
-  </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= f.label :tipo_combustivel, "Tipo de Combustível", class: "form-label fw-medium" %>
+        <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize, a] }, 
+                     { prompt: "Selecione o combustível" }, class: "form-select" %>
+      </div>
 
-  <div class="mb-3">
-    <%= f.label :data_abastecimento, "Data do Abastecimento", class: "form-label" %>
-    <%= f.date_field :data_abastecimento, class: "form-control" %>
-  </div>
+      <div class="col-md-6 mb-3">
+        <%= f.label :data_abastecimento, "Data do Abastecimento", class: "form-label fw-medium" %>
+        <%= f.date_field :data_abastecimento, class: "form-control" %>
+      </div>
+    </div>
 
-  <div class="mb-3">
-    <%= f.label :quantidade_litros, "Quantidade (Litros)", class: "form-label" %>
-    <%= f.number_field :quantidade_litros, step: :any, class: "form-control", placeholder: "Ex: 35.00" %>
-  </div>
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <%= f.label :quantidade_litros, "Quantidade (Litros)", class: "form-label fw-medium" %>
+        <%= f.number_field :quantidade_litros, step: :any, class: "form-control", placeholder: "Ex: 35.00" %>
+      </div>
 
-  <div class="mb-3">
-    <%= f.label :preco_litro, "Preço por Litro", class: "form-label" %>
-    <%= f.number_field :preco_litro, step: :any, class: "form-control", placeholder: "Ex: 5.89" %>
-  </div>
+      <div class="col-md-6 mb-3">
+        <%= f.label :preco_litro, "Preço por Litro", class: "form-label fw-medium" %>
+        <%= f.number_field :preco_litro, step: :any, class: "form-control", placeholder: "Ex: 5.89" %>
+      </div>
+    </div>
 
-  <div class="mb-3">
-    <%= f.label :nome_posto, "Nome do Posto", class: "form-label" %>
-    <%= f.text_field :nome_posto, class: "form-control", placeholder: "Ex: Posto Shell" %>
-  </div>
+    <div class="mb-3">
+      <%= f.label :nome_posto, "Nome do Posto", class: "form-label fw-medium" %>
+      <%= f.text_field :nome_posto, class: "form-control", placeholder: "Ex: Posto Shell" %>
+    </div>
 
-  <%# Exemplo de como adicionar campos para associações (se o Abastecimento pertencer a Veículo ou Funcionário) %>
-  <%# Se você tiver um modelo Veiculo e quiser associar: %>
+    <%# Campo de Upload de Foto %>
+    <div class="mb-3 p-3 bg-light rounded-3 border">
+      <%= f.label :comprovante, "Foto do Cupom Fiscal", class: "form-label fw-bold text-primary" %>
+      <div class="d-flex align-items-center">
+        <i class="bi bi-camera fs-3 me-3 text-muted"></i>
+        <%= f.file_field :comprovante, class: "form-control", accept: 'image/*' %>
+      </div>
+      <div class="form-text mt-2">Tire uma foto legível do comprovante. Isso é obrigatório para auditoria.</div>
+    </div>
 
-  <div class="d-flex justify-content-between align-items-center mt-4">
-    <%= f.submit "Salvar Abastecimento", class: "btn btn-primary" %>
-    <%=botoes_aplicacao(lista_abastecimentos_path, "Cancelar")  %>
+    <div class="d-flex justify-content-between align-items-center mt-4">
+      <%# Mudei para btn-success para seguir o padrão visual que criamos %>
+      <%= f.submit "Salvar Abastecimento", class: "btn btn-success px-4" %>
+      <%= link_to "Cancelar", lista_abastecimentos_path, class: "btn btn-outline-secondary" %>
+    </div>
   </div>
 <% end %>

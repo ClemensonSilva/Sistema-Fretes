@@ -4,7 +4,11 @@ class AbastecimentosController < ApplicationController
   end
 
   def index
-    @abastecimentos = Abastecimento.all
+    if current_funcionario.motorista?
+      @abastecimentos = current_funcionario.abastecimentos_motorista(current_funcionario.id)
+    else
+      @abastecimentos = Abastecimento.all
+    end
   end
 
   def edit
@@ -17,9 +21,9 @@ class AbastecimentosController < ApplicationController
 
   def create
     @abastecimento = Abastecimento.new(abastecimento_params)
-
+    @abastecimento.funcionario = current_funcionario
     if @abastecimento.save
-      redirect_to @abastecimento, notice: "Abastecimento criada com sucesso."
+      redirect_to @abastecimento, notice: "Abastecimento criado com sucesso."
     else
       render :new, status: :unprocessable_entity
     end
@@ -34,7 +38,7 @@ class AbastecimentosController < ApplicationController
     if @abastecimento.update(abastecimento_params)
       redirect_to abastecimento_path, notice: "Edição concluida com sucesso."
     else
-      render "edit", status: :unprocessable_entify
+      render "edit", status: :unprocessable_entity
     end
   end
 
@@ -47,6 +51,6 @@ class AbastecimentosController < ApplicationController
   private
   def abastecimento_params
     params.require(:abastecimento).permit(:tipo_combustivel, :data_abastecimento,
-      :quantidade_litros, :preco_litro, :nome_posto)
+      :quantidade_litros, :preco_litro, :nome_posto, :veiculo_id, :nota_fiscal)
   end
 end
