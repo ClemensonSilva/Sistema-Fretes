@@ -1,8 +1,39 @@
+<%# Cabeçalho Dinâmico %>
 <div class="d-flex justify-content-between align-items-center mb-4">
-  <h2 class="h3 mb-0 text-gray-800">Visão Geral da Operação</h2>
-  <span class="text-muted"><i class="bi bi-calendar3 me-1"></i> <%= Time.current.strftime("%d de %B de %Y") %></span>
+  <div>
+    <h2 class="h3 mb-0 text-gray-800">Visão Geral da Operação</h2>
+    <p class="text-muted small mb-0">
+      Mostrando dados de <strong><%= l(@data_inicio) %></strong> até <strong><%= l(@data_fim) %></strong>
+    </p>
+  </div>
+  <div class="text-muted">
+    <i class="bi bi-calendar3 me-1"></i> <%= Time.current.strftime("%d de %B de %Y") %>
+  </div>
 </div>
 
+<%# Card de Filtro %>
+<div class="card shadow-sm border-0 rounded-3 mb-4 bg-light">
+  <div class="card-body">
+    <%= form_with url: gerente_dashboard_path, method: :get, class: "row g-3 align-items-end" do |f| %>
+      <div class="col-12 col-md-4">
+        <%= f.label :data_inicio, "Data Início", class: "form-label small fw-bold text-uppercase text-muted" %>
+        <%= f.date_field :data_inicio, value: @data_inicio, class: "form-control border-0 shadow-sm" %>
+      </div>
+      <div class="col-12 col-md-4">
+        <%= f.label :data_fim, "Data Fim", class: "form-label small fw-bold text-uppercase text-muted" %>
+        <%= f.date_field :data_fim, value: @data_fim, class: "form-control border-0 shadow-sm" %>
+      </div>
+      <div class="col-12 col-md-4">
+        <div class="d-flex gap-2">
+          <%= f.submit "Filtrar Resultados", class: "btn btn-primary w-100 fw-bold" %>
+          <%= link_to "Limpar", gerente_dashboard_path, class: "btn btn-outline-secondary" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<%# Container dos Cards de KPI %>
 <div class="row g-4 mb-5">
   
   <%# Card 1: Faturamento (Verde) %>
@@ -13,13 +44,14 @@
           <i class="bi bi-cash-stack fs-3"></i>
         </div>
         <div>
-          <h6 class="text-muted text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Faturamento Total</h6>
+          <h6 class="text-muted text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Faturamento no Período</h6>
           <h4 class="mb-0 fw-bold text-dark"><%= number_to_currency(@faturamento_total, unit: "R$ ", separator: ",", delimiter: ".") %></h4>
         </div>
       </div>
     </div>
   </div>
 
+  <%# Card 2: Custo (Vermelho) %>
   <div class="col-12 col-sm-6 col-xl-3">
     <div class="card shadow-sm border-0 rounded-3 h-100">
       <div class="card-body d-flex align-items-center p-4">
@@ -34,6 +66,7 @@
     </div>
   </div>
 
+  <%# Card 3: Trânsito (Azul) - Não filtrado por data, pois é tempo real %>
   <div class="col-12 col-sm-6 col-xl-3">
     <div class="card shadow-sm border-0 rounded-3 h-100">
       <div class="card-body d-flex align-items-center p-4">
@@ -48,6 +81,7 @@
     </div>
   </div>
 
+  <%# Card 4: Frota (Amarelo) - Geral %>
   <div class="col-12 col-sm-6 col-xl-3">
     <div class="card shadow-sm border-0 rounded-3 h-100">
       <div class="card-body d-flex align-items-center p-4">
@@ -55,7 +89,7 @@
           <i class="bi bi-truck fs-3"></i>
         </div>
         <div>
-          <h6 class="text-muted text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Frota Total</h6>
+          <h6 class="text-muted text-uppercase mb-1" style="font-size: 0.75rem; letter-spacing: 0.5px;">Frota Ativa</h6>
           <h4 class="mb-0 fw-bold text-dark"><%= @veiculos_total %> <small class="text-muted fs-6 fw-normal">veículos</small></h4>
         </div>
       </div>
