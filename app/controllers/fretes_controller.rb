@@ -11,7 +11,7 @@ class FretesController < ApplicationController
     if current_funcionario.motorista?
       @fretes = current_funcionario.fretes
     else  
-     @fretes = Frete.all
+      @fretes = Frete.all
     end
   end
   def new
@@ -19,7 +19,8 @@ class FretesController < ApplicationController
   end
   def create
     @frete = Frete.new(frete_params)
-    if @frete.save
+    
+    if @frete.allowed_motorista? && @frete.save
       redirect_to @frete, notice: "Frete foi criado com sucesso."
     else
       render :new, status: :unprocessable_entity

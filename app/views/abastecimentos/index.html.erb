@@ -3,7 +3,7 @@
   <h2 class="h3 mb-0 text-gray-800">Registros de Abastecimentos</h2>
   
   <% if current_funcionario.motorista? %>
-  <%= botoes_aplicacao(new_abastecimento_path, "Registrar Abastecimento") %>
+  <%= botoes_aplicacao(new_abastecimento_path, "Registrar Abastecimento", { turbo_frame: "modal" }) %>
   <% end %>
 </div>
 
@@ -39,8 +39,8 @@
       header: "Ações", 
       custom_render: Proc.new { |abastecimento|
         "<div class='d-flex gap-2'>".html_safe +
-          botoes_aplicacao(abastecimento_path(abastecimento), "Detalhar") +
-          botoes_aplicacao(edit_abastecimento_path(abastecimento), "Editar") +
+          botoes_aplicacao(abastecimento_detalhes_path(abastecimento), "Detalhar", { turbo_frame: "modal" }) +
+          botoes_aplicacao(edit_abastecimento_path(abastecimento), "Editar", { turbo_frame: "modal" }) +
           botoes_aplicacao(abastecimento_path(abastecimento), "Excluir", :delete) +
         "</div>".html_safe
       }

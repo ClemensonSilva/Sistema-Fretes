@@ -27,10 +27,9 @@
     { 
       header: "Ações",
       custom_render: Proc.new { |veiculo|
-        # O d-flex e gap-2 forçam os botões a ficarem numa linha só com um pequeno espaço entre eles
         "<div class='d-flex gap-2'>".html_safe +
-          botoes_aplicacao(veiculo_path(veiculo), "Detalhar") +
-          botoes_aplicacao(edit_veiculo_path(veiculo), "Editar") +
+          botoes_aplicacao(veiculo_path(veiculo), "Detalhar", {turbo_frame: "modal"}) +
+          botoes_aplicacao(edit_veiculo_path(veiculo), "Editar", {turbo_frame: "modal"}) +
           botoes_aplicacao(veiculo_path(veiculo), 'Excluir', :delete) +
         "</div>".html_safe
       }

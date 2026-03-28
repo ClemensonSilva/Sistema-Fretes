@@ -1,27 +1,19 @@
 Rails.application.routes.draw do
   get "home/index"
   devise_for :funcionarios
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
-  # Can be used by load balancers and uptime monitors to verify that the app is live.
+  # Reveal health status
   get "up" => "rails/health#show", as: :rails_health_check
 
-  # Render dynamic PWA files from app/views/pwa/* (remember to link manifest in application.html.erb)
-  # get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-  # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
-
-  # Defines the root path route ("/")
-  # root "posts#index"
   root to: "home#index"
 
   # motoristas
   get "motoristas/show", to: "motoristas#dashboard", as: :motorista_dashboard
   get "motoristas", to: "motoristas#index", as: :lista_motoristas
 
+  # gerente e funcionario
   get "gerente/show", to: "gerente#dashboard", as: :gerente_dashboard
   get "funcionario/show/:id", to: "funcionario#show", as: :funcionario_detalhes
-
 
   # manutencoes
   resources :manutencaos
@@ -29,18 +21,25 @@ Rails.application.routes.draw do
   get "manutencaos/:id", to: "manutencao#show", as: :manutencao_detalhes
 
 
-  # abastecimentos
-  resources :abastecimentos
-  get "abastecimentos", to: "abastecimento#index", as: :lista_abastecimentos
-  get "abastecimento/:id", to: "abastecimento#show", as: :abastecimento_detalhes
+  # abastecimentos (Bloco member corrigido, controller no plural e except adicionado)
+  get "abastecimentos", to: "abastecimentos#index", as: :lista_abastecimentos
+  get "abastecimento/:id", to: "abastecimentos#show", as: :abastecimento_detalhes
+  
+  resources :abastecimentos, except: [:index, :show] do
+    member do
+      patch :aprovar
+      patch :rejeitar
+    end
+  end
 
-  # fretes
-  resources :fretes
-  get "fretes", to: "frete#index", as: :lista_fretes
-  #cnhs
+  # fretes (Corrigido para o plural "fretes#..." e adicionado o except)
+  get "fretes", to: "fretes#index", as: :lista_fretes
+  resources :fretes, except: [:index]
+
+  # cnhs
   resources :cnhs
-  # veiculos
-  resources :veiculos
+  
+  # veiculos (Adicionado o except para evitar conflito com a rota manual)
   get "veiculos", to: "veiculos#index", as: :lista_veiculos
-  # get 'veiculos/:id/tipo_combustivel_select', to: 'veiculos#tipo_combustivel', as: :veiculo_tipo_combustivel_select
+  resources :veiculos, except: [:index]
 end

@@ -20,4 +20,22 @@ class GerenteController < ApplicationController
     @veiculos_total = Veiculo.count
   end
 
+  def aprovar
+    @abastecimento = Abastecimento.find(params[:id])
+    if @abastecimento.update(status: :aprovado)
+      redirect_to gerente_dashboard_path, notice: 'Abastecimento aprovado e baixado com sucesso.'
+    else
+      redirect_to gerente_dashboard_path, alert: 'Erro ao aprovar abastecimento.'
+    end
+  end
+
+  def rejeitar
+    @abastecimento = Abastecimento.find(params[:id])
+    if @abastecimento.update(status: :rejeitado)
+      redirect_to gerente_dashboard_path, notice: 'Abastecimento rejeitado.'
+    else
+      redirect_to gerente_dashboard_path, alert: 'Erro ao rejeitar abastecimento.'
+    end
+  end
+
 end

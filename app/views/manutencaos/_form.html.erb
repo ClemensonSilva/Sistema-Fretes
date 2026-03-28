@@ -1,9 +1,3 @@
-<%# app/views/manutencoes/_form.html.erb %>
-<%#
-  Este partial espera uma variável local 'manutencao'
-  (que pode ser @manutencao do controller, ou Manutencao.new para criação/edição).
-%>
-
 <%= form_with(model: manutencao, local: true) do |f| %>
   <% if manutencao.errors.any? %>
     <div id="error_explanation" class="alert alert-danger">
@@ -20,10 +14,7 @@
 
   <div class="mb-3">
     <%= f.label :tipo, "Tipo de Manutenção", class: "form-label" %>
-    <%# Se 'tipo' for um enum no seu modelo Manutencao: %>
     <%= f.select :tipo, Manutencao.tipos.keys.map { |t| [t.humanize, t] }, { prompt: "Selecione o tipo" }, class: "form-select" %>
-    <%# Se 'tipo' for apenas uma string, você pode usar um text_field ou um select com opções fixas: %>
-    <%# <%= f.text_field :tipo, class: "form-control", placeholder: "Ex: Corretiva, Preventiva" %>
   </div>
 
   <div class="mb-3">
@@ -53,7 +44,6 @@
 
   <div class="d-flex justify-content-between align-items-center mt-4">
     <%= f.submit "Salvar Manutenção", class: "btn btn-primary" %>
-    <%# Ajuste o link 'lista_manutencoes_path' para a rota correta do seu aplicativo %>
     <%= botoes_aplicacao(lista_manutencoes_path, "Cancelar") %>
   </div>
 <% end %>

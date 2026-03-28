@@ -1,6 +1,7 @@
 <div class="container my-4">
   <h1 class="mb-4">Novo Veículo</h1>
+<%= render "layouts/modal", title: "Detalhes do Frete" do %>
 
-  <%# Renderiza o partial _form.html.erb, passando a variável local 'veiculo' %>
   <%= render 'form', frete: @frete %>
+<% end %>
 </div>

@@ -11,6 +11,7 @@ class ManutencaosController < ApplicationController
 
   def edit
     @manutencao = Manutencao.find(params[:id])
+    
   end
   def new
     @manutencao = Manutencao.new

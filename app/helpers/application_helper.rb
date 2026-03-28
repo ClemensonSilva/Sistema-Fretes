@@ -8,15 +8,12 @@ module ApplicationHelper
           concat content_tag(:span, "#" + object_id.to_s, class: "badge bg-light text-primary ms-2")
         end
 
-        # --- THE FIX IS HERE ---
-        # Capture the content of the link_to block
+        
         link_content = capture do
           concat content_tag(:i, "", class: "bi bi-pencil-square me-1")
           concat " Editar"
         end
-        # Now, concat the link_to with its captured content
         concat link_to(link_content, edit_path, class: "btn btn-light btn-sm d-flex align-items-center")
-        # --- END OF FIX ---
       end
     end
 
@@ -28,8 +25,20 @@ module ApplicationHelper
       end
   end
 
-  # se true, retorna um elemento botao
-  def botoes_aplicacao(path, tipo, method_verb = :get)
+  def botoes_aplicacao(path, tipo, method_or_data = :get, data: {})
+    method_verb = :get
+    data_attributes = data.dup
+
+    if method_or_data.is_a?(Hash)
+      data_attributes.merge!(method_or_data)
+    else
+      method_verb = method_or_data
+    end
+
+    html_options = {
+      data: data_attributes
+    }
+
     case tipo.downcase
     when "editar"
       icone = "bi bi-pencil-square me-1"
@@ -51,11 +60,11 @@ module ApplicationHelper
       cor = "btn-outline-primary"
     end
     if method_verb == :get
-      link_to path, class: "btn #{cor} btn-sm  align-items-center mt-1 ms-1" do
+      link_to path, html_options.merge(class: "btn #{cor} btn-sm  align-items-center mt-1 ms-1") do
         tag.i(class: icone) + content_tag(:span, tipo)
         end
     else
-      button_to path, method: method_verb, class: "btn #{cor} btn-sm  align-items-center mt-1 ms-1" do
+      button_to path, html_options.merge(method: method_verb, class: "btn #{cor} btn-sm  align-items-center mt-1 ms-1") do
         tag.i(class: icone) + content_tag(:span, tipo)
       end
     end

@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  helper ApplicationHelper
     before_action :authenticate_funcionario!
 
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.

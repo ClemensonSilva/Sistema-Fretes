@@ -1,1 +1,3 @@
-<%= render 'abastecimentos/abastecimento', abastecimento: @abastecimento %>
+<%= render "layouts/modal", title: "Detalhes do Abastecimento", return_path: lista_abastecimentos_path do %>
+	<%= render "abastecimentos/abastecimento", abastecimento: @abastecimento %>
+<% end %>

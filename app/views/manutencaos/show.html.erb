@@ -1,1 +1,3 @@
-<%= render 'manutencaos/manutencao', manutencao: @manutencao %>
+<%= render "layouts/modal", title: "Detalhes da Manutenção", return_path: lista_manutencoes_path do %>
+  <%= render "manutencaos/manutencao", manutencao: @manutencao %>
+<% end %>

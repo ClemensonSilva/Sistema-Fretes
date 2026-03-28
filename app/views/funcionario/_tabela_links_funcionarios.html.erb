@@ -27,8 +27,8 @@
       header: "Ações",
       custom_render: Proc.new { |funcionario|
         "<div class='d-flex gap-2'>".html_safe +
-          botoes_aplicacao(funcionario_detalhes_path(funcionario), "Detalhar") +
-          botoes_aplicacao(edit_funcionario_registration_path(funcionario), "Editar") +
+          botoes_aplicacao(funcionario_detalhes_path(funcionario), "Detalhar", {turbo_frame: "modal"}) +
+          botoes_aplicacao(edit_funcionario_registration_path(funcionario), "Editar", {turbo_frame: "modal"}) +
           botoes_aplicacao(funcionario_registration_path(funcionario), 'Excluir', :delete) +
         "</div>".html_safe
       }

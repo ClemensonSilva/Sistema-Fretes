@@ -1,4 +1,4 @@
-<%# app/views/veiculo/edit.html.erb %>
+<%= render "layouts/modal", title: "Editar Veículo" do %>
 
 <div class="container my-4">
   <h1 class="mb-4">Editar Registro do veiculo </h1>
@@ -6,3 +6,5 @@
     <%= render 'form', veiculo: @veiculo %>
   </div>
 </div>
+
+<% end %>

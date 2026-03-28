@@ -21,7 +21,7 @@
   </head>
 
   <body>
-    <div id="flash-messages" class="position-fixed top-0 end-0 p-4" style="z-index: 1055;">
+    <div data-controller="flash" id="flash-messages"  class="position-fixed top-0 end-0 p-4" style="z-index: 1055;">
       
       <% if notice %>
         <div class="alert alert-success alert-dismissible fade show shadow-lg rounded-3 border-0" role="alert" style="min-width: 250px;">
@@ -39,19 +39,7 @@
 
     </div>
 
-    <script>
-      document.addEventListener("turbo:load", function() {
-        setTimeout(function() {
-          let alerts = document.querySelectorAll('#flash-messages .alert');
-          alerts.forEach(function(alertNode) {
-            // Remove a classe 'show' para iniciar a animação de desaparecimento do Bootstrap
-            alertNode.classList.remove('show');
-            // Remove o elemento do HTML após a animação (150ms) para não sujar o código invisível
-            setTimeout(() => alertNode.remove(), 150); 
-          });
-        }, 4000); // 4000 milissegundos = 4 segundos
-      });
-    </script>
+   
 
     <% if funcionario_signed_in? %>
       
@@ -69,11 +57,11 @@
         <div class="d-flex justify-content-end gap-2 mb-4">
           <%= link_to "Login", new_funcionario_session_path, class: 'btn btn-outline-primary' %>
           <%= link_to "Cadastrar novo motorista", new_funcionario_registration_path, class: 'btn btn-primary' %>
-        </div>
-        
+        </div> 
         <%= yield %>
       </div>
 
     <% end %>
+    <%= turbo_frame_tag "modal" %>
   </body>
 </html>
