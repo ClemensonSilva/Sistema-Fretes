@@ -2,7 +2,6 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  # Usa a variável DATABASE_HOST do docker-compose ou assume 'db'
   host: <%= ENV.fetch("DATABASE_HOST") { "db" } %>
   username: <%= ENV.fetch("POSTGRES_USER") { "admin" } %>
   password: <%= ENV.fetch("POSTGRES_PASSWORD") { "root" } %>

@@ -36,7 +36,7 @@ class AbastecimentosController < ApplicationController
     @abastecimento = Abastecimento.find(params[:id])
     @abastecimento.update(abastecimento_params)
     if @abastecimento.update(abastecimento_params)
-      redirect_to abastecimento_path, notice: "Edição concluida com sucesso."
+      redirect_to abastecimento_detalhes_path, notice: "Edição concluida com sucesso."
     else
       render "edit", status: :unprocessable_entity
     end

@@ -1,4 +1,3 @@
-<%# app/views/manutencoes/_tabela_manutencoes.html.erb %>
 
 <div class="d-flex justify-content-between align-items-center mb-4">
   <h2 class="h3 mb-0 text-gray-800">Registros de Manutenções</h2>
@@ -17,7 +16,6 @@
     },
     { 
       header: "Tipo", 
-      # Assumindo que seu helper tipo_manutencao_cor_classe já gera uma badge/pílula colorida
       custom_render: Proc.new { |manutencao| tipo_manutencao_cor_classe(manutencao.tipo) } 
     },
     { 
@@ -33,7 +31,6 @@
     { 
       header: "Ações", 
       custom_render: Proc.new { |manutencao|
-        # Removemos os botões da coluna de custo e criamos a coluna dedicada de Ações usando o gap-2
         "<div class='d-flex gap-2'>".html_safe +
           botoes_aplicacao(manutencao_detalhes_path(manutencao), "Detalhar") +
           botoes_aplicacao(edit_manutencao_path(manutencao), "Editar") +

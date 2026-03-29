@@ -7,6 +7,10 @@ class Funcionario < ApplicationRecord
   belongs_to :cnh, class_name: "Cnh"
   has_many :fretes,  class_name: "Frete", foreign_key: "funcionario_id"
   has_many :abastecimentos, foreign_key: "funcionario_id"
+  before_validation :formatar_documentos
+  validates :cpf, presence: true, uniqueness: true, cpf: true
+
+  
 
   self.inheritance_column = :cargo
   enum :regiao_atuacao, {NORDESTE: 0, SULDESTE: 1, CENTROOESTE: 2, SUL: 3, NORTE: 4}
@@ -25,5 +29,11 @@ class Funcionario < ApplicationRecord
 
   def gerente?
     self.cargo == "Gerente"
+  end
+
+  private
+
+  def formatar_documentos
+    self.cpf = CPF.new(cpf).stripped if cpf.present?
   end
 end
