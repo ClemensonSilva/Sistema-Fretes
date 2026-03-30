@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
   def details_card_header(object, edit_path, title)
       object_id = object.respond_to?(:id) ? object.id : "N/A"
 

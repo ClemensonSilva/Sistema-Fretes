@@ -6,7 +6,7 @@ class VeiculosController < ApplicationController
     @veiculo = Veiculo.new
   end
   def index
-    @veiculos = Veiculo.all
+      @pagy, @veiculos = pagy(Veiculo.all.order(ano_fabricacao: :desc))
   end
   def create
     @veiculo = Veiculo.new(veiculo_params)
@@ -31,7 +31,7 @@ class VeiculosController < ApplicationController
     if @veiculo.update(veiculo_params)
       redirect_to veiculo_path, notice: "Edição concluída com sucesso"
     else
-      render "edit", status: :unprocessable_entify
+      render "edit", status: :unprocessable_entity
     end
   end
   def destroy
@@ -50,10 +50,11 @@ class VeiculosController < ApplicationController
   rescue StandardError => e
     redirect_to veiculos_url, alert: "Ocorreu um erro inesperado: #{e.message}"
   end
-end
+
 
   private
   def veiculo_params
     params.require(:veiculo).permit(:placa, :marca, :modelo, :ano_fabricacao, :tipo_combustivel, :categoria_veiculo,
                                     :vel_max_controlada, :status, :quilometragem_km)
   end
+end

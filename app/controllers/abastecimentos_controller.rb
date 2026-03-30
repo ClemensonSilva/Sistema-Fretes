@@ -1,13 +1,14 @@
 class AbastecimentosController < ApplicationController
+
   def show
     @abastecimento = Abastecimento.find(params[:id])
   end
 
   def index
     if current_funcionario.motorista?
-      @abastecimentos = current_funcionario.abastecimentos_motorista(current_funcionario.id)
+      @pagy, @abastecimentos = pagy(current_funcionario.abastecimentos_motorista(current_funcionario.id))
     else
-      @abastecimentos = Abastecimento.all
+      @pagy, @abastecimentos = pagy(Abastecimento.all.order(data_abastecimento: :desc))
     end
   end
 
@@ -28,12 +29,9 @@ class AbastecimentosController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-  def new
-    @abastecimento = Abastecimento.new
-  end
+ 
   # adicionar rescue para tratamento de erros
   def update
-    @abastecimento = Abastecimento.find(params[:id])
     @abastecimento.update(abastecimento_params)
     if @abastecimento.update(abastecimento_params)
       redirect_to abastecimento_detalhes_path, notice: "Edição concluida com sucesso."

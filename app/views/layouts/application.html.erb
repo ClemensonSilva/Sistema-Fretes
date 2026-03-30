@@ -43,10 +43,10 @@
 
     <% if funcionario_signed_in? %>
       
-      <div class="d-flex flex-nowrap" style="min-height: 100vh;">
+      <div class="app-shell d-flex flex-nowrap" style="min-height: 100vh;">
         <%= render 'layouts/sidebar' %>
-        
-        <main class="flex-grow-1 p-4 overflow-auto" style="width: 100%;">
+
+        <main class="app-main flex-grow-1 p-4 overflow-auto" style="width: 100%;">
           <%= yield %>
         </main>
       </div>

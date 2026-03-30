@@ -1,6 +1,10 @@
 class FretesController < ApplicationController
   # TODO ADICIONAR PROPRIEDADE CARGA AO FRETE
-
+  before_action :carregar_dependencias, only: [:new, :edit, :create, :update]
+  def carregar_dependencias
+    @veiculos_disponiveis = Veiculo.where(status: :SERVICO)
+    @motoristas = Funcionario.motoristas_validos
+  end
   def show
     @frete = Frete.find(params[:id])
   end
@@ -9,9 +13,9 @@ class FretesController < ApplicationController
   end
   def index
     if current_funcionario.motorista?
-      @fretes = current_funcionario.fretes
+      @pagy, @fretes = pagy(current_funcionario.fretes.order(id: :desc))
     else  
-      @fretes = Frete.all
+      @pagy, @fretes = pagy(Frete.order(id: :desc))
     end
   end
   def new

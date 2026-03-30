@@ -8,6 +8,6 @@ class FuncionarioController < ApplicationController
     end
   end
   def edit
-
+    
   end
 end

@@ -2,8 +2,8 @@
 class Cnh < ApplicationRecord
   enum :cat_cnh, { A: 0, B: 1, AB: 2, ABC: 3, ABCD: 4, ABCDE: 5 }, prefix: :true
   enum :status, { ativa: 0, suspensa: 1 , cassada: 2, vencida: 3}, prefix: true
-  has_one :funcionario, class_name: "Funcionario", dependent: :destroy
-
+  belongs_to :funcionario, class_name: "Funcionario", optional: true, foreign_key: "funcionario_id"
+  
   before_validation :formatar_cnh
   validates :numero_registro, presence: true, uniqueness: true, cnh: true
 

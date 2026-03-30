@@ -3,7 +3,7 @@ class ManutencaosController < ApplicationController
     @manutencao = Manutencao.find(params[:id])
   end
   def index
-    @manutencoes = Manutencao.all
+    @pagy, @manutencoes = pagy(Manutencao.all.order(data_agendada: :desc))
   end
   def new
     @manutencao = Manutencao.new
@@ -34,11 +34,10 @@ class ManutencaosController < ApplicationController
 
   def update
     @manutencao = Manutencao.find(params[:id])
-    @manutencao.update(manutencao_params)
     if @manutencao.update(manutencao_params)
       redirect_to manutencao_detalhes_path,  notice: "Edição concluída com sucesso"
     else
-      render "edit", status: :unprocessable_entify
+      render "edit", status: :unprocessable_entity
     end
   end
 

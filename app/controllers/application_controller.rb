@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   helper ApplicationHelper
     before_action :authenticate_funcionario!
 

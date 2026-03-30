@@ -1,6 +1,45 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
 
+:root {
+	--sidebar-width: 280px;
+}
+
+@media (min-width: 992px) {
+	.app-shell {
+		min-height: 100vh;
+	}
+
+	.app-sidebar {
+		position: fixed;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: var(--sidebar-width) !important;
+		min-height: 100vh;
+		overflow-y: auto;
+		z-index: 1030;
+	}
+
+	.app-main {
+		margin-left: var(--sidebar-width);
+		width: calc(100% - var(--sidebar-width)) !important;
+		min-height: 100vh;
+	}
+}
+
+@media (max-width: 991.98px) {
+	.app-sidebar {
+		position: static;
+		width: 100% !important;
+	}
+
+	.app-main {
+		margin-left: 0;
+		width: 100% !important;
+	}
+}
+
 body {
 	min-height: 100vh;
 	background:

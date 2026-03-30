@@ -5,6 +5,7 @@ gem "propshaft" # Asset pipeline padrão do Rails 8
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "cpf_cnpj"
+gem 'pagy', '~> 9.3'
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"

@@ -7,7 +7,9 @@ class Frete < ApplicationRecord
 
   def allowed_motorista?
     cnh = Cnh.find_by(funcionario_id: self.funcionario_id)
-    return cnh.status == 0 && cnh.validade > Date.current    
+    if cnh.present? && cnh.status == 0 && cnh.validade > Date.current
+      return true
+    end
   end
   
 end

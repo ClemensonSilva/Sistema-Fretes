@@ -35,6 +35,7 @@ class CnhsController < ApplicationController
   end
 
   def destroy
+    @cnh = Cnh.find(params[:id])
     @cnh.destroy
     redirect_to cnhs_url, notice: "CNH excluída com sucesso."
   end
