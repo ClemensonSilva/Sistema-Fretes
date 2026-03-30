@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2026_03_22_182329) do
+ActiveRecord::Schema[8.0].define(version: 2026_03_30_130117) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -67,6 +67,8 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_22_182329) do
     t.text "observacoes", default: "Nenhuma observação"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "funcionario_id"
+    t.index ["funcionario_id"], name: "index_cnhs_on_funcionario_id"
   end
 
   create_table "fretes", force: :cascade do |t|
@@ -92,13 +94,11 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_22_182329) do
     t.string "cargo"
     t.integer "regiao_atuacao"
     t.bigint "supervisor_id"
-    t.bigint "cnh_id"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["cnh_id"], name: "index_funcionarios_on_cnh_id"
     t.index ["email"], name: "index_funcionarios_on_email", unique: true
     t.index ["reset_password_token"], name: "index_funcionarios_on_reset_password_token", unique: true
     t.index ["supervisor_id"], name: "index_funcionarios_on_supervisor_id"
@@ -134,6 +134,7 @@ ActiveRecord::Schema[8.0].define(version: 2026_03_22_182329) do
   add_foreign_key "abastecimentos", "funcionarios"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "cnhs", "funcionarios"
   add_foreign_key "fretes", "funcionarios"
   add_foreign_key "fretes", "veiculos"
 end
