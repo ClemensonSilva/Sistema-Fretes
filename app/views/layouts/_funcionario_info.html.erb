@@ -17,7 +17,7 @@
         
         <div class="mb-3">
           <small class="text-muted d-block text-uppercase" style="font-size: 0.75rem;">CPF</small>
-          <span class="fw-medium text-dark"><%= @funcionario.cpf %></span>
+          <span class="fw-medium text-dark"><%= cpf_formatado(@funcionario.cpf) %></span>
         </div>
         
         <div class="mb-3">
@@ -60,8 +60,14 @@
         <% end %>
       <% end %>
       
-      <%= link_to cnh_path(@funcionario.cnh.id), class: "btn btn-info text-white" do %>
-        <i class="bi bi-card-heading me-1"></i> Detalhar CNH
+      <% if @funcionario.cnh.present? %>
+        <%= link_to cnh_path(@funcionario.cnh.id), class: "btn btn-info text-white", data: { turbo_frame: "_top" } do %>
+          <i class="bi bi-card-heading me-1"></i> Detalhar CNH
+        <% end %>
+      <% else %>
+        <span class="btn btn-outline-secondary disabled">
+          <i class="bi bi-card-heading me-1"></i> CNH não cadastrada
+        </span>
       <% end %>
     </div>
   </div>

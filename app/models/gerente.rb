@@ -3,6 +3,7 @@ class Gerente < Funcionario
   has_many :motoristas, class_name: "Motorista", foreign_key: :supervisor_id , dependent: :destroy
   has_many :fretes, through: :motoristas
   has_many :veiculos, through: :fretes
+  
 
 
   def self.get_supervisores

@@ -7,7 +7,12 @@ class FuncionarioController < ApplicationController
       @funcionario = Funcionario.find(params[:id])
     end
   end
-  def edit
-    
+
+  def edit    
+
   end
+
+  private
+
+  
 end

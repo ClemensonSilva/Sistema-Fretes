@@ -1,5 +1,20 @@
 module ApplicationHelper
   include Pagy::Frontend
+
+  def cpf_formatado(cpf)
+    return "" if cpf.blank?
+
+    CPF.new(cpf).formatted
+  rescue StandardError
+    cpf
+  end
+
+  def veiculo_opcao_label(veiculo)
+    return "N/A" if veiculo.blank?
+
+    "#{veiculo.modelo} - #{veiculo.placa}"
+  end
+
   def details_card_header(object, edit_path, title)
       object_id = object.respond_to?(:id) ? object.id : "N/A"
 
@@ -22,7 +37,14 @@ module ApplicationHelper
   def veiculo_selection_field(form_builder)
     content_tag(:div, class: "mb-3") do
       concat form_builder.label(:veiculo_id, "Veículo", class: "form-label")
-      concat form_builder.collection_select(:veiculo_id, Veiculo.all, :id, :placa, { prompt: "Selecione um veículo" }, class: "form-select")
+      concat form_builder.collection_select(
+        :veiculo_id,
+        Veiculo.all,
+        :id,
+        ->(veiculo) { veiculo_opcao_label(veiculo) },
+        { prompt: "Selecione um veículo" },
+        class: "form-select"
+      )
       end
   end
 

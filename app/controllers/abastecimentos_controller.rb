@@ -49,6 +49,6 @@ class AbastecimentosController < ApplicationController
   private
   def abastecimento_params
     params.require(:abastecimento).permit(:tipo_combustivel, :data_abastecimento,
-      :quantidade_litros, :preco_litro, :nome_posto, :veiculo_id, :nota_fiscal)
+      :quantidade_litros, :preco_litro, :nome_posto, :veiculo_id, :comprovante)
   end
 end

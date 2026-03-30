@@ -24,7 +24,7 @@
     <div class="row">
       <div class="col-md-6 mb-3">
         <%= f.label :tipo_combustivel, "Tipo de Combustível", class: "form-label fw-medium" %>
-        <%= f.select :tipo_combustivel, Veiculo.tipo_combustivels.keys.map { |a| [a.humanize, a] }, 
+        <%= f.select :tipo_combustivel, Abastecimento.tipo_combustivels.keys.map { |a| [a.humanize, a] }, 
                      { prompt: "Selecione o combustível" }, class: "form-select" %>
       </div>
 

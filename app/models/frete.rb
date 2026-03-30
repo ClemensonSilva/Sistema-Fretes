@@ -5,11 +5,10 @@ class Frete < ApplicationRecord
   belongs_to :funcionario, class_name: "Funcionario"
   enum :status, { EM_ANDAMENTO:0, FINALIZADO:1, NAO_INICIADO: 2}, prefix: true
 
-  def allowed_motorista?
-    cnh = Cnh.find_by(funcionario_id: self.funcionario_id)
-    if cnh.present? && cnh.status == 0 && cnh.validade > Date.current
-      return true
-    end
-  end
+  scope :veiculos_disponiveis, -> { Veiculo.joins(:fretes).where.not(fretes: { status: :EM_ANDAMENTO }) }
+
+ # def allowed_motorista?
+  #  funcionario.cnh.status == 0 
+  #end
   
 end
