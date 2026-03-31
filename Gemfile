@@ -6,6 +6,7 @@ gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
 gem "cpf_cnpj"
 gem 'pagy', '~> 9.3'
+gem 'geocoder', '~> 1.8'
 gem "importmap-rails"
 gem "turbo-rails"
 gem "stimulus-rails"

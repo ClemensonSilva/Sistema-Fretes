@@ -5,6 +5,27 @@ class FretesController < ApplicationController
     @veiculos_disponiveis = Veiculo.where(status: :SERVICO)
     @motoristas = Funcionario.motoristas_validos
   end
+  # TODO implementar método para estimar o tempo da entrega baseando-se na distância e 
+  # a velocidade média controlada do veículo selecionado aplicando fator de correção possíveis imprevistos
+  def estimar_preco
+    origem = "#{params[:origem_cidade]} - #{params[:origem_uf]}"
+    destino = "#{params[:destino_cidade]} - #{params[:destino_uf]}"
+
+    resultado = ::CalculadoraFreteEstimadoService.call(origem, destino) # pretendo refatorar e configurar o namespace
+
+    if resultado
+      render json: { 
+        sucesso: true, 
+        distancia_km: resultado[:distancia_km], 
+        preco_sugerido: resultado[:preco_sugerido] 
+      }
+    else
+      render json: { 
+        sucesso: false, 
+        erro: "Não foi possível localizar uma das cidades no mapa." 
+      }, status: :unprocessable_entity
+    end
+  end
   def show
     @frete = Frete.find(params[:id])
   end
@@ -61,6 +82,6 @@ class FretesController < ApplicationController
   end
 
   def frete_params
-    params.require(:frete).permit(:veiculo_id, :funcionario_id, :preco, :status, :origem, :destino, :data_chegada, :data_saida)
+    params.require(:frete).permit(:veiculo_id, :funcionario_id, :origem_uf, :origem_cidade, :preco, :status, :destino_uf, :destino_cidade, :data_chegada, :data_saida)
   end
 end
